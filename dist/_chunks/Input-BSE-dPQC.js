@@ -312,7 +312,7 @@ async function docFromHash(hash) {
   await closed;
   return JSON.parse(output.join(""));
 }
-const EquationComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./EquationComponent-CSbuO1oZ.js")));
+const EquationComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./EquationComponent-Ckccf19t.js")));
 function $convertEquationElement(domNode) {
   let equation = domNode.getAttribute("data-lexical-equation");
   const inline = domNode.getAttribute("data-lexical-inline") === "true";
@@ -416,7 +416,7 @@ function $createEquationNode(equation = "", inline = false) {
 function $isEquationNode(node) {
   return node instanceof EquationNode;
 }
-const ImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./ImageComponent-B5BHLYQW.js")));
+const ImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./ImageComponent-CN5Vb0og.js")));
 function isGoogleDocCheckboxImg(img2) {
   return img2.parentElement != null && img2.parentElement.tagName === "LI" && img2.previousSibling === null && img2.getAttribute("aria-roledescription") === "checkbox";
 }
@@ -20215,7 +20215,7 @@ function PageBreakPlugin() {
   }, [editor]);
   return null;
 }
-const PollComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./PollComponent-DiqvEMzF.js")));
+const PollComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./PollComponent-DBls38JU.js")));
 function createUID() {
   return Math.random().toString(36).replace(/[^a-z]+/g, "").slice(0, 5);
 }
@@ -20542,6 +20542,7 @@ function getDynamicOptions(editor, queryString) {
   }
   return options;
 }
+const headings = [3, 4, 5];
 function getBaseOptions(editor, showModal) {
   return [
     new ComponentPickerOption("Paragraph", {
@@ -20554,7 +20555,7 @@ function getBaseOptions(editor, showModal) {
         }
       })
     }),
-    ...[3, 4, 5].map(
+    ...headings.map(
       (n) => new ComponentPickerOption(`Heading ${n}`, {
         icon: /* @__PURE__ */ jsxRuntime.jsx("i", { className: `icon h${n}` }),
         keywords: ["heading", "header", `h${n}`],
@@ -21609,8 +21610,8 @@ function TextFormatFloatingToolbar({
   isCapitalize: isCapitalize2,
   isCode,
   isStrikethrough,
-  isSubscript: isSubscript2,
-  isSuperscript: isSuperscript2,
+  isSubscript,
+  isSuperscript,
   setIsLinkEditMode
 }) {
   const { formatMessage } = reactIntl.useIntl();
@@ -21785,120 +21786,6 @@ function TextFormatFloatingToolbar({
       "button",
       {
         type: "button",
-        onClick: () => {
-          editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "subscript");
-        },
-        className: "popup-item spaced " + (isSubscript2 ? "active" : ""),
-        title: formatMessage({
-          id: "lexical.plugin.format.subscript.title",
-          defaultMessage: "Subscript"
-        }),
-        "aria-label": formatMessage({
-          id: "lexical.plugin.format.subscript.aria",
-          defaultMessage: "Format Subscript"
-        }),
-        children: /* @__PURE__ */ jsxRuntime.jsx("i", { className: "format subscript" })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "button",
-      {
-        type: "button",
-        onClick: () => {
-          editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "superscript");
-        },
-        className: "popup-item spaced " + (isSuperscript2 ? "active" : ""),
-        title: formatMessage({
-          id: "lexical.plugin.format.superscript.title",
-          defaultMessage: "Superscript"
-        }),
-        "aria-label": formatMessage({
-          id: "lexical.plugin.format.superscript.aria",
-          defaultMessage: "Format Superscript"
-        }),
-        children: /* @__PURE__ */ jsxRuntime.jsx("i", { className: "format superscript" })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "button",
-      {
-        type: "button",
-        onClick: () => {
-          editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "uppercase");
-        },
-        className: "popup-item spaced " + (isUppercase2 ? "active" : ""),
-        title: formatMessage({
-          id: "lexical.plugin.format.uppercase.title",
-          defaultMessage: "Uppercase"
-        }),
-        "aria-label": formatMessage({
-          id: "lexical.plugin.format.uppercase.aria",
-          defaultMessage: "Format text to uppercase"
-        }),
-        children: /* @__PURE__ */ jsxRuntime.jsx("i", { className: "format uppercase" })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "button",
-      {
-        type: "button",
-        onClick: () => {
-          editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "lowercase");
-        },
-        className: "popup-item spaced " + (isLowercase2 ? "active" : ""),
-        title: formatMessage({
-          id: "lexical.plugin.format.lowercase.title",
-          defaultMessage: "Lowercase"
-        }),
-        "aria-label": formatMessage({
-          id: "lexical.plugin.format.lowercase.aria",
-          defaultMessage: "Format text to lowercase"
-        }),
-        children: /* @__PURE__ */ jsxRuntime.jsx("i", { className: "format lowercase" })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "button",
-      {
-        type: "button",
-        onClick: () => {
-          editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "capitalize");
-        },
-        className: "popup-item spaced " + (isCapitalize2 ? "active" : ""),
-        title: formatMessage({
-          id: "lexical.plugin.format.capitalize.title",
-          defaultMessage: "Capitalize"
-        }),
-        "aria-label": formatMessage({
-          id: "lexical.plugin.format.capitalize.aria",
-          defaultMessage: "Format text to capitalize"
-        }),
-        children: /* @__PURE__ */ jsxRuntime.jsx("i", { className: "format capitalize" })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "button",
-      {
-        type: "button",
-        onClick: () => {
-          editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "code");
-        },
-        className: "popup-item spaced " + (isCode ? "active" : ""),
-        title: formatMessage({
-          id: "lexical.plugin.format.code.title",
-          defaultMessage: "Insert code block"
-        }),
-        "aria-label": formatMessage({
-          id: "lexical.plugin.format.code.aria",
-          defaultMessage: "Insert code block"
-        }),
-        children: /* @__PURE__ */ jsxRuntime.jsx("i", { className: "format code" })
-      }
-    ),
-    /* @__PURE__ */ jsxRuntime.jsx(
-      "button",
-      {
-        type: "button",
         onClick: insertLink,
         className: "popup-item spaced " + (isLink ? "active" : ""),
         title: formatMessage({
@@ -21924,8 +21811,8 @@ function useFloatingTextFormatToolbar(editor, anchorElem, setIsLinkEditMode) {
   const [isLowercase2, setIsLowercase] = React.useState(false);
   const [isCapitalize2, setIsCapitalize] = React.useState(false);
   const [isStrikethrough, setIsStrikethrough] = React.useState(false);
-  const [isSubscript2, setIsSubscript] = React.useState(false);
-  const [isSuperscript2, setIsSuperscript] = React.useState(false);
+  const [isSubscript, setIsSubscript] = React.useState(false);
+  const [isSuperscript, setIsSuperscript] = React.useState(false);
   const [isCode, setIsCode] = React.useState(false);
   const updatePopup = React.useCallback(() => {
     editor.getEditorState().read(() => {
@@ -22005,8 +21892,8 @@ function useFloatingTextFormatToolbar(editor, anchorElem, setIsLinkEditMode) {
         isLowercase: isLowercase2,
         isCapitalize: isCapitalize2,
         isStrikethrough,
-        isSubscript: isSubscript2,
-        isSuperscript: isSuperscript2,
+        isSubscript,
+        isSuperscript,
         isUnderline,
         isCode,
         setIsLinkEditMode
@@ -22022,7 +21909,7 @@ function FloatingTextFormatToolbarPlugin({
   const [editor] = LexicalComposerContext.useLexicalComposerContext();
   return useFloatingTextFormatToolbar(editor, anchorElem, setIsLinkEditMode);
 }
-const InlineImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./InlineImageComponent-CQ6W_Lsi.js")));
+const InlineImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./InlineImageComponent-Dy-Ypkj7.js")));
 function $convertInlineImageElement(domNode) {
   if (lexical.isHTMLElement(domNode) && domNode.nodeName === "IMG") {
     const { alt: altText, src, width, height } = domNode;
@@ -23193,13 +23080,6 @@ const formatBulletList = (editor, blockType) => {
     formatParagraph(editor);
   }
 };
-const formatCheckList = (editor, blockType) => {
-  if (blockType !== "check") {
-    editor.dispatchCommand(list.INSERT_CHECK_LIST_COMMAND, void 0);
-  } else {
-    formatParagraph(editor);
-  }
-};
 const formatNumberedList = (editor, blockType) => {
   if (blockType !== "number") {
     editor.dispatchCommand(list.INSERT_ORDERED_LIST_COMMAND, void 0);
@@ -23212,26 +23092,6 @@ const formatQuote = (editor, blockType) => {
     editor.update(() => {
       const selection$1 = lexical.$getSelection();
       selection.$setBlocksType(selection$1, () => richText.$createQuoteNode());
-    });
-  }
-};
-const formatCode = (editor, blockType) => {
-  if (blockType !== "code") {
-    editor.update(() => {
-      let selection$1 = lexical.$getSelection();
-      if (selection$1 !== null) {
-        if (selection$1.isCollapsed()) {
-          selection.$setBlocksType(selection$1, () => code.$createCodeNode());
-        } else {
-          const textContent = selection$1.getTextContent();
-          const codeNode = code.$createCodeNode();
-          selection$1.insertNodes([codeNode]);
-          selection$1 = lexical.$getSelection();
-          if (lexical.$isRangeSelection(selection$1)) {
-            selection$1.insertRawText(textContent);
-          }
-        }
-      }
     });
   }
 };
@@ -23288,7 +23148,6 @@ const SHORTCUTS = Object.freeze({
   // (Ctrl|⌘) + Shift + <key> shortcuts
   INCREASE_FONT_SIZE: IS_APPLE ? "⌘+Shift+." : "Ctrl+Shift+.",
   DECREASE_FONT_SIZE: IS_APPLE ? "⌘+Shift+," : "Ctrl+Shift+,",
-  INSERT_CODE_BLOCK: IS_APPLE ? "⌘+Shift+C" : "Ctrl+Shift+C",
   STRIKETHROUGH: IS_APPLE ? "⌘+Shift+S" : "Ctrl+Shift+S",
   LOWERCASE: IS_APPLE ? "⌘+Shift+1" : "Ctrl+Shift+1",
   UPPERCASE: IS_APPLE ? "⌘+Shift+2" : "Ctrl+Shift+2",
@@ -23298,8 +23157,6 @@ const SHORTCUTS = Object.freeze({
   LEFT_ALIGN: IS_APPLE ? "⌘+Shift+L" : "Ctrl+Shift+L",
   RIGHT_ALIGN: IS_APPLE ? "⌘+Shift+R" : "Ctrl+Shift+R",
   // (Ctrl|⌘) + <key> shortcuts
-  SUBSCRIPT: IS_APPLE ? "⌘+," : "Ctrl+,",
-  SUPERSCRIPT: IS_APPLE ? "⌘+." : "Ctrl+.",
   INDENT: IS_APPLE ? "⌘+]" : "Ctrl+]",
   OUTDENT: IS_APPLE ? "⌘+[" : "Ctrl+[",
   CLEAR_FORMATTING: IS_APPLE ? "⌘+\\" : "Ctrl+\\",
@@ -23339,14 +23196,6 @@ function isFormatBulletList(event) {
 function isFormatNumberedList(event) {
   const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
   return (code2 === "Numpad5" || code2 === "Digit5") && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey);
-}
-function isFormatCheckList(event) {
-  const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return (code2 === "Numpad6" || code2 === "Digit6") && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey);
-}
-function isFormatCode(event) {
-  const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code2 === "KeyC" && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey);
 }
 function isFormatQuote(event) {
   const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
@@ -23392,18 +23241,6 @@ function isJustifyAlign(event) {
   const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
   return code2 === "KeyJ" && shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
 }
-function isSubscript(event) {
-  const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code2 === "Comma" && !shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
-}
-function isSuperscript(event) {
-  const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code2 === "Period" && !shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
-}
-function isInsertCodeBlock(event) {
-  const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code2 === "KeyC" && shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
-}
 function isIncreaseFontSize(event) {
   const { code: code2, shiftKey, altKey, metaKey, ctrlKey } = event;
   return code2 === "Period" && shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
@@ -23443,12 +23280,6 @@ function ShortcutsPlugin({
       } else if (isFormatNumberedList(event)) {
         event.preventDefault();
         formatNumberedList(editor, toolbarState.blockType);
-      } else if (isFormatCheckList(event)) {
-        event.preventDefault();
-        formatCheckList(editor, toolbarState.blockType);
-      } else if (isFormatCode(event)) {
-        event.preventDefault();
-        formatCode(editor, toolbarState.blockType);
       } else if (isFormatQuote(event)) {
         event.preventDefault();
         formatQuote(editor, toolbarState.blockType);
@@ -23482,15 +23313,6 @@ function ShortcutsPlugin({
       } else if (isJustifyAlign(event)) {
         event.preventDefault();
         editor.dispatchCommand(lexical.FORMAT_ELEMENT_COMMAND, "justify");
-      } else if (isSubscript(event)) {
-        event.preventDefault();
-        editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "subscript");
-      } else if (isSuperscript(event)) {
-        event.preventDefault();
-        editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "superscript");
-      } else if (isInsertCodeBlock(event)) {
-        event.preventDefault();
-        editor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "code");
       } else if (isIncreaseFontSize(event)) {
         event.preventDefault();
         updateFontSize(editor, UpdateFontSizeType.increment, toolbarState.fontSizeInputValue);
@@ -25233,7 +25055,8 @@ function BlockFormatDropDown({
               /* @__PURE__ */ jsxRuntime.jsx("span", { className: "shortcut", children: SHORTCUTS.QUOTE })
             ]
           }
-        )
+        ),
+        " "
       ]
     }
   );
@@ -25889,60 +25712,6 @@ function ToolbarPlugin({
             /* @__PURE__ */ jsxRuntime.jsxs(
               DropDownItem,
               {
-                onClick: () => {
-                  activeEditor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "subscript");
-                },
-                className: "item wide " + dropDownActiveClass(toolbarState.isSubscript),
-                title: formatMessage({
-                  id: "lexical.plugin.toolbar.format.subscript.title",
-                  defaultMessage: "Subscript"
-                }),
-                "aria-label": formatMessage({
-                  id: "lexical.plugin.toolbar.format.subscript.aria",
-                  defaultMessage: "Format text with a subscript"
-                }),
-                children: [
-                  /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "icon-text-container", children: [
-                    /* @__PURE__ */ jsxRuntime.jsx("i", { className: "icon subscript" }),
-                    /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text", children: formatMessage({
-                      id: "lexical.plugin.toolbar.format.subscript.text",
-                      defaultMessage: "Subscript"
-                    }) })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntime.jsx("span", { className: "shortcut", children: SHORTCUTS.SUBSCRIPT })
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntime.jsxs(
-              DropDownItem,
-              {
-                onClick: () => {
-                  activeEditor.dispatchCommand(lexical.FORMAT_TEXT_COMMAND, "superscript");
-                },
-                className: "item wide " + dropDownActiveClass(toolbarState.isSuperscript),
-                title: formatMessage({
-                  id: "lexical.plugin.toolbar.format.superscript.title",
-                  defaultMessage: "Superscript"
-                }),
-                "aria-label": formatMessage({
-                  id: "lexical.plugin.toolbar.format.superscript.aria",
-                  defaultMessage: "Format text with a superscript"
-                }),
-                children: [
-                  /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "icon-text-container", children: [
-                    /* @__PURE__ */ jsxRuntime.jsx("i", { className: "icon superscript" }),
-                    /* @__PURE__ */ jsxRuntime.jsx("span", { className: "text", children: formatMessage({
-                      id: "lexical.plugin.toolbar.format.superscript.text",
-                      defaultMessage: "Superscript"
-                    }) })
-                  ] }),
-                  /* @__PURE__ */ jsxRuntime.jsx("span", { className: "shortcut", children: SHORTCUTS.SUPERSCRIPT })
-                ]
-              }
-            ),
-            /* @__PURE__ */ jsxRuntime.jsxs(
-              DropDownItem,
-              {
                 onClick: () => clearFormatting(activeEditor),
                 className: "item wide",
                 title: formatMessage({
@@ -26019,7 +25788,7 @@ function LexicalContentEditable({
     }
   );
 }
-const StrapiImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StrapiImageComponent-DAoKyGdI.js")));
+const StrapiImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StrapiImageComponent-D3TnfZs_.js")));
 class StrapiImageNode extends lexical.DecoratorNode {
   __documentId;
   __src;
@@ -26499,7 +26268,7 @@ const theme = {
     uppercase: "PlaygroundEditorTheme__textUppercase"
   }
 };
-const StickyComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StickyComponent-DF36YbH4.js")));
+const StickyComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StickyComponent-CRxfLUyy.js")));
 class StickyNode extends lexical.DecoratorNode {
   __x;
   __y;

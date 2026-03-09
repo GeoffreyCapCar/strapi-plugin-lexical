@@ -81,7 +81,7 @@ const index = {
           // @ts-expect-error its fine and works, the typing of the props seems to be wrong at the moment
           import(
             /* webpackChunkName: "lexical-input-component" */
-            "../_chunks/Input-ChDt0ozq.mjs"
+            "../_chunks/Input-Zip3c9Yw.mjs"
           ).then((n) => n.I)
         )
       },

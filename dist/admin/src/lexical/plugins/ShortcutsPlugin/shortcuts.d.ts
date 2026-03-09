@@ -12,12 +12,9 @@ export declare const SHORTCUTS: Readonly<{
     HEADING5: "⌘+Opt+3" | "Ctrl+Alt+3";
     BULLET_LIST: "⌘+Opt+4" | "Ctrl+Alt+4";
     NUMBERED_LIST: "⌘+Opt+5" | "Ctrl+Alt+5";
-    // CHECK_LIST: "⌘+Opt+6" | "Ctrl+Alt+6";
-    // CODE_BLOCK: "⌘+Opt+C" | "Ctrl+Alt+C";
     QUOTE: "⌘+Opt+Q" | "Ctrl+Alt+Q";
     INCREASE_FONT_SIZE: "⌘+Shift+." | "Ctrl+Shift+.";
     DECREASE_FONT_SIZE: "⌘+Shift+," | "Ctrl+Shift+,";
-    // INSERT_CODE_BLOCK: "⌘+Shift+C" | "Ctrl+Shift+C";
     STRIKETHROUGH: "⌘+Shift+S" | "Ctrl+Shift+S";
     LOWERCASE: "⌘+Shift+1" | "Ctrl+Shift+1";
     UPPERCASE: "⌘+Shift+2" | "Ctrl+Shift+2";
@@ -26,8 +23,6 @@ export declare const SHORTCUTS: Readonly<{
     JUSTIFY_ALIGN: "⌘+Shift+J" | "Ctrl+Shift+J";
     LEFT_ALIGN: "⌘+Shift+L" | "Ctrl+Shift+L";
     RIGHT_ALIGN: "⌘+Shift+R" | "Ctrl+Shift+R";
-    // SUBSCRIPT: "⌘+," | "Ctrl+,";
-    // SUPERSCRIPT: "⌘+." | "Ctrl+.";
     INDENT: "⌘+]" | "Ctrl+]";
     OUTDENT: "⌘+[" | "Ctrl+[";
     CLEAR_FORMATTING: "⌘+\\" | "Ctrl+\\";

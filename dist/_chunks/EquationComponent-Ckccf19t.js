@@ -7,7 +7,7 @@ const utils = require("@lexical/utils");
 const lexical = require("lexical");
 const React = require("react");
 const reactErrorBoundary = require("react-error-boundary");
-const Input = require("./Input-BmUUodWb.js");
+const Input = require("./Input-BSE-dPQC.js");
 function EquationEditor({ equation, setEquation, inline }, forwardedRef) {
   const onChange = (event) => {
     setEquation(event.target.value);

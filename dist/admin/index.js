@@ -84,7 +84,7 @@ const index = {
           // @ts-expect-error its fine and works, the typing of the props seems to be wrong at the moment
           Promise.resolve().then(() => require(
             /* webpackChunkName: "lexical-input-component" */
-            "../_chunks/Input-BmUUodWb.js"
+            "../_chunks/Input-BSE-dPQC.js"
           )).then((n) => n.Input)
         )
       },
