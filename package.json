@@ -25,7 +25,7 @@
   ],
   "scripts": {
     "build": "strapi-plugin build",
-    "prebuild": "mkdir -p ./dist/src/images/ && cp -R ./admin/src/lexical/images/* ./dist/src/images/",
+    "postbuild": "mkdir -p ./dist/src/images/ && cp -R ./admin/src/lexical/images/* ./dist/src/images/",
     "postinstall": "npm run build",
     "prepublishOnly": "npm run build",
     "format": "prettier admin server --write",
