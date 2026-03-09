@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-fork.3",
+  "version": "0.3.0-fork.4",
   "keywords": [],
   "type": "commonjs",
   "exports": {
@@ -26,7 +26,6 @@
   "scripts": {
     "build": "strapi-plugin build",
     "postbuild": "mkdir -p ./dist/src/images/ && cp -R ./admin/src/lexical/images/* ./dist/src/images/",
-    "postinstall": "npm run build",
     "prepublishOnly": "npm run build",
     "format": "prettier admin server --write",
     "format:check": "npm run format -- --check",
