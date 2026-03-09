@@ -21,7 +21,9 @@
     "./style.css": "./dist/style.css"
   },
   "files": [
-    "dist"
+    "dist",
+    "admin",
+    "server"
   ],
   "scripts": {
     "build": "strapi-plugin build",
