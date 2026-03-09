@@ -34,6 +34,7 @@ import {
   UpdateFontSizeType,
 } from '../ToolbarPlugin/utils';
 import {
+  getHeadingTagFromKeyEvent,
   isCapitalize,
   isCenterAlign,
   isClearFormatting,
@@ -78,9 +79,10 @@ export default function ShortcutsPlugin({
         formatParagraph(editor);
       } else if (isFormatHeading(event)) {
         event.preventDefault();
-        const { code } = event;
-        const headingSize = `h${code[code.length - 1]}` as HeadingTagType;
-        formatHeading(editor, toolbarState.blockType, headingSize);
+        const headingTag = getHeadingTagFromKeyEvent(event);
+        if (headingTag) {
+          formatHeading(editor, toolbarState.blockType, headingTag as HeadingTagType);
+        }
       } else if (isFormatBulletList(event)) {
         event.preventDefault();
         formatBulletList(editor, toolbarState.blockType);

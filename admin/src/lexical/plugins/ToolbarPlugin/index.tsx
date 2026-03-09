@@ -203,36 +203,6 @@ function BlockFormatDropDown({
         <span className="shortcut">{SHORTCUTS.NORMAL}</span>
       </DropDownItem>
       <DropDownItem
-        className={'item wide ' + dropDownActiveClass(blockType === 'h1')}
-        onClick={() => formatHeading(editor, blockType, 'h1')}
-      >
-        <div className="icon-text-container">
-          <i className="icon h1" />
-          <span className="text">
-            {formatMessage({
-              id: 'lexical.plugin.toolbar.block.h1',
-              defaultMessage: 'Heading 1',
-            })}
-          </span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.HEADING1}</span>
-      </DropDownItem>
-      <DropDownItem
-        className={'item wide ' + dropDownActiveClass(blockType === 'h2')}
-        onClick={() => formatHeading(editor, blockType, 'h2')}
-      >
-        <div className="icon-text-container">
-          <i className="icon h2" />
-          <span className="text">
-            {formatMessage({
-              id: 'lexical.plugin.toolbar.block.h2',
-              defaultMessage: 'Heading 2',
-            })}
-          </span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.HEADING2}</span>
-      </DropDownItem>
-      <DropDownItem
         className={'item wide ' + dropDownActiveClass(blockType === 'h3')}
         onClick={() => formatHeading(editor, blockType, 'h3')}
       >
@@ -246,6 +216,36 @@ function BlockFormatDropDown({
           </span>
         </div>
         <span className="shortcut">{SHORTCUTS.HEADING3}</span>
+      </DropDownItem>
+      <DropDownItem
+        className={'item wide ' + dropDownActiveClass(blockType === 'h4')}
+        onClick={() => formatHeading(editor, blockType, 'h4')}
+      >
+        <div className="icon-text-container">
+          <i className="icon h4" />
+          <span className="text">
+            {formatMessage({
+              id: 'lexical.plugin.toolbar.block.h4',
+              defaultMessage: 'Heading 4',
+            })}
+          </span>
+        </div>
+        <span className="shortcut">{SHORTCUTS.HEADING4}</span>
+      </DropDownItem>
+      <DropDownItem
+        className={'item wide ' + dropDownActiveClass(blockType === 'h5')}
+        onClick={() => formatHeading(editor, blockType, 'h5')}
+      >
+        <div className="icon-text-container">
+          <i className="icon h5" />
+          <span className="text">
+            {formatMessage({
+              id: 'lexical.plugin.toolbar.block.h5',
+              defaultMessage: 'Heading 5',
+            })}
+          </span>
+        </div>
+        <span className="shortcut">{SHORTCUTS.HEADING5}</span>
       </DropDownItem>
       <DropDownItem
         className={'item wide ' + dropDownActiveClass(blockType === 'bullet')}
