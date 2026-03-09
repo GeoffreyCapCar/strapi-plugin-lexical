@@ -251,7 +251,7 @@ function TextFormatFloatingToolbar({
           >
             <i className="format strikethrough" />
           </button>
-          <button
+          {/* <button
             type="button"
             onClick={() => {
               editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
@@ -352,7 +352,7 @@ function TextFormatFloatingToolbar({
             })}
           >
             <i className="format code" />
-          </button>
+          </button> */}
           <button
             type="button"
             onClick={insertLink}

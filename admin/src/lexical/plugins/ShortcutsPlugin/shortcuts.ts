@@ -23,7 +23,6 @@ export const SHORTCUTS = Object.freeze({
   // (Ctrl|⌘) + Shift + <key> shortcuts
   INCREASE_FONT_SIZE: IS_APPLE ? '⌘+Shift+.' : 'Ctrl+Shift+.',
   DECREASE_FONT_SIZE: IS_APPLE ? '⌘+Shift+,' : 'Ctrl+Shift+,',
-  INSERT_CODE_BLOCK: IS_APPLE ? '⌘+Shift+C' : 'Ctrl+Shift+C',
   STRIKETHROUGH: IS_APPLE ? '⌘+Shift+S' : 'Ctrl+Shift+S',
   LOWERCASE: IS_APPLE ? '⌘+Shift+1' : 'Ctrl+Shift+1',
   UPPERCASE: IS_APPLE ? '⌘+Shift+2' : 'Ctrl+Shift+2',
@@ -34,8 +33,6 @@ export const SHORTCUTS = Object.freeze({
   RIGHT_ALIGN: IS_APPLE ? '⌘+Shift+R' : 'Ctrl+Shift+R',
 
   // (Ctrl|⌘) + <key> shortcuts
-  SUBSCRIPT: IS_APPLE ? '⌘+,' : 'Ctrl+,',
-  SUPERSCRIPT: IS_APPLE ? '⌘+.' : 'Ctrl+.',
   INDENT: IS_APPLE ? '⌘+]' : 'Ctrl+]',
   OUTDENT: IS_APPLE ? '⌘+[' : 'Ctrl+[',
   CLEAR_FORMATTING: IS_APPLE ? '⌘+\\' : 'Ctrl+\\',

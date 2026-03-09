@@ -275,6 +275,21 @@ function BlockFormatDropDown({
         </div>
         <span className="shortcut">{SHORTCUTS.NUMBERED_LIST}</span>
       </DropDownItem>
+      {/* <DropDownItem
+        className={'item wide ' + dropDownActiveClass(blockType === 'check')}
+        onClick={() => formatCheckList(editor, blockType)}
+      >
+        <div className="icon-text-container">
+          <i className="icon check-list" />
+          <span className="text">
+            {formatMessage({
+              id: 'lexical.plugin.toolbar.block.check',
+              defaultMessage: 'Check List',
+            })}
+          </span>
+        </div>
+        <span className="shortcut">{SHORTCUTS.CHECK_LIST}</span>
+      </DropDownItem> */}
       <DropDownItem
         className={'item wide ' + dropDownActiveClass(blockType === 'quote')}
         onClick={() => formatQuote(editor, blockType)}
@@ -289,7 +304,22 @@ function BlockFormatDropDown({
           </span>
         </div>
         <span className="shortcut">{SHORTCUTS.QUOTE}</span>
-      </DropDownItem>
+      </DropDownItem>{' '}
+      {/* <DropDownItem
+        className={'item wide ' + dropDownActiveClass(blockType === 'code')}
+        onClick={() => formatCode(editor, blockType)}
+      >
+        <div className="icon-text-container">
+          <i className="icon code" />
+          <span className="text">
+            {formatMessage({
+              id: 'lexical.plugin.toolbar.block.code',
+              defaultMessage: 'Code Block',
+            })}
+          </span>
+        </div>
+        <span className="shortcut">{SHORTCUTS.CODE_BLOCK}</span>
+      </DropDownItem> */}
     </DropDown>
   );
 }
@@ -763,6 +793,24 @@ export default function ToolbarPlugin({
     },
     [activeEditor, selectedElementKey]
   );
+
+  // const insertGifOnClick = (payload: InsertImagePayload) => {
+  //   activeEditor.dispatchCommand(INSERT_IMAGE_COMMAND, payload);
+  // };
+
+  // const canViewerSeeInsertDropdown = !toolbarState.isImageCaption;
+  // const canViewerSeeInsertCodeButton = !toolbarState.isImageCaption;
+
+  // const [isStrapiImageDialogOpen, setIsStrapiImageDialogOpen] = useState(false);
+
+  // const components = useStrapiApp('ImageDialog', (state) => state.components);
+
+  // const MediaLibraryDialog = components['media-library'] as React.ComponentType<{
+  //   allowedTypes: string[];
+  //   onClose: () => void;
+  //   onSelectAssets: (assets: any[]) => void;
+  // }>;
+
   return (
     <div className="toolbar">
       <button
@@ -801,6 +849,13 @@ export default function ToolbarPlugin({
       >
         <i className="format redo" />
       </button>
+      {/* {isStrapiImageDialogOpen && (
+        <InsertStrapiImageDialog
+          MediaLibraryDialog={MediaLibraryDialog}
+          activeEditor={activeEditor}
+          onClose={() => setIsStrapiImageDialogOpen(false)}
+        />
+      )} */}
       <Divider />
       {toolbarState.blockType in blockTypeToBlockName && activeEditor === editor && (
         <>
@@ -910,6 +965,29 @@ export default function ToolbarPlugin({
           >
             <i className="format underline" />
           </button>
+          {/* {canViewerSeeInsertCodeButton && (
+            <button
+              disabled={!isEditable}
+              onClick={() => {
+                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
+              }}
+              className={'toolbar-item spaced ' + (toolbarState.isCode ? 'active' : '')}
+              title={formatMessage(
+                {
+                  id: 'lexical.plugin.toolbar.format.code.title',
+                  defaultMessage: 'Insert code block ({shortcut})',
+                },
+                { shortcut: SHORTCUTS.INSERT_CODE_BLOCK }
+              )}
+              type="button"
+              aria-label={formatMessage({
+                id: 'lexical.plugin.toolbar.format.code.aria',
+                defaultMessage: 'Insert code block',
+              })}
+            >
+              <i className="format code" />
+            </button>
+          )} */}
           {/* <DropdownColorPicker
             disabled={!isEditable}
             buttonClassName="toolbar-item color-picker"
@@ -1038,7 +1116,7 @@ export default function ToolbarPlugin({
               </div>
               <span className="shortcut">{SHORTCUTS.STRIKETHROUGH}</span>
             </DropDownItem>
-            <DropDownItem
+            {/* <DropDownItem
               onClick={() => {
                 activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
               }}
@@ -1087,7 +1165,7 @@ export default function ToolbarPlugin({
                 </span>
               </div>
               <span className="shortcut">{SHORTCUTS.SUPERSCRIPT}</span>
-            </DropDownItem>
+            </DropDownItem> */}
             <DropDownItem
               onClick={() => clearFormatting(activeEditor)}
               className="item wide"
@@ -1135,12 +1213,254 @@ export default function ToolbarPlugin({
             <i className="format link" />
           </button>
 
+          {/* <button
+            onClick={() => setIsStrapiImageDialogOpen(true)}
+            title={formatMessage({
+              id: 'lexical.plugin.toolbar.insert.strapiimage.title',
+              defaultMessage: 'Strapi Image',
+            })}
+            type="button"
+            className="toolbar-item"
+            aria-label={formatMessage({
+              id: 'lexical.plugin.toolbar.insert.strapiimage.aria',
+              defaultMessage: 'Insert Strapi Image',
+            })}
+          >
+            <i className="format image" />
+          </button>
+
+          <Divider /> */}
+
           <ElementFormatDropdown
             disabled={!isEditable}
             value={toolbarState.elementFormat}
             editor={activeEditor}
             isRTL={toolbarState.isRTL}
           />
+
+          {/* {canViewerSeeInsertDropdown && (
+            <>
+              <Divider />
+              <DropDown
+                disabled={!isEditable}
+                buttonClassName="toolbar-item spaced"
+                buttonLabel={formatMessage({
+                  id: 'lexical.plugin.toolbar.insert.button.text',
+                  defaultMessage: 'Insert',
+                })}
+                buttonAriaLabel={formatMessage({
+                  id: 'lexical.plugin.toolbar.insert.button.aria',
+                  defaultMessage: 'Insert specialized editor node',
+                })}
+                buttonIconClassName="icon plus"
+              >
+                <DropDownItem
+                  onClick={() => {
+                    activeEditor.dispatchCommand(INSERT_HORIZONTAL_RULE_COMMAND, undefined);
+                  }}
+                  className="item"
+                >
+                  <i className="icon horizontal-rule" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.horizontalrule.text',
+                      defaultMessage: 'Horizontal Rule',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    activeEditor.dispatchCommand(INSERT_PAGE_BREAK, undefined);
+                  }}
+                  className="item"
+                >
+                  <i className="icon page-break" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.pagebreak.text',
+                      defaultMessage: 'Page Break',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    showModal(
+                      formatMessage({
+                        id: 'lexical.plugin.toolbar.insert.image.modal.title',
+                        defaultMessage: 'Insert Image',
+                      }),
+                      (onClose) => (
+                        <InsertImageDialog activeEditor={activeEditor} onClose={onClose} />
+                      )
+                    );
+                  }}
+                  className="item"
+                >
+                  <i className="icon image" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.image.text',
+                      defaultMessage: 'Image',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    showModal(
+                      formatMessage({
+                        id: 'lexical.plugin.toolbar.insert.inlineimage.modal.title',
+                        defaultMessage: 'Insert Inline Image',
+                      }),
+                      (onClose) => (
+                        <InsertInlineImageDialog activeEditor={activeEditor} onClose={onClose} />
+                      )
+                    );
+                  }}
+                  className="item"
+                >
+                  <i className="icon image" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.inlineimage.text',
+                      defaultMessage: 'Inline Image',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    showModal(
+                      formatMessage({
+                        id: 'lexical.plugin.toolbar.insert.table.modal.title',
+                        defaultMessage: 'Insert Table',
+                      }),
+                      (onClose) => (
+                        <InsertTableDialog activeEditor={activeEditor} onClose={onClose} />
+                      )
+                    );
+                  }}
+                  className="item"
+                >
+                  <i className="icon table" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.table.text',
+                      defaultMessage: 'Table',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    showModal(
+                      formatMessage({
+                        id: 'lexical.plugin.toolbar.insert.poll.modal.title',
+                        defaultMessage: 'Insert Poll',
+                      }),
+                      (onClose) => (
+                        <InsertPollDialog activeEditor={activeEditor} onClose={onClose} />
+                      )
+                    );
+                  }}
+                  className="item"
+                >
+                  <i className="icon poll" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.poll.text',
+                      defaultMessage: 'Poll',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    showModal(
+                      formatMessage({
+                        id: 'lexical.plugin.toolbar.insert.columns.modal.title',
+                        defaultMessage: 'Insert Columns Layout',
+                      }),
+                      (onClose) => (
+                        <InsertLayoutDialog activeEditor={activeEditor} onClose={onClose} />
+                      )
+                    );
+                  }}
+                  className="item"
+                >
+                  <i className="icon columns" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.columns.text',
+                      defaultMessage: 'Columns Layout',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    showModal(
+                      formatMessage({
+                        id: 'lexical.plugin.toolbar.insert.equation.modal.title',
+                        defaultMessage: 'Insert Equation',
+                      }),
+                      (onClose) => (
+                        <InsertEquationDialog activeEditor={activeEditor} onClose={onClose} />
+                      )
+                    );
+                  }}
+                  className="item"
+                >
+                  <i className="icon equation" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.equation.text',
+                      defaultMessage: 'Equation',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    editor.update(() => {
+                      const root = $getRoot();
+                      const stickyNode = $createStickyNode(0, 0);
+                      root.append(stickyNode);
+                    });
+                  }}
+                  className="item"
+                >
+                  <i className="icon sticky" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.stickynote.text',
+                      defaultMessage: 'Sticky Note',
+                    })}
+                  </span>
+                </DropDownItem>
+                <DropDownItem
+                  onClick={() => {
+                    editor.dispatchCommand(INSERT_COLLAPSIBLE_COMMAND, undefined);
+                  }}
+                  className="item"
+                >
+                  <i className="icon caret-right" />
+                  <span className="text">
+                    {formatMessage({
+                      id: 'lexical.plugin.toolbar.insert.collapsible.text',
+                      defaultMessage: 'Collapsible container',
+                    })}
+                  </span>
+                </DropDownItem>
+                {EmbedConfigs.map((embedConfig) => (
+                  <DropDownItem
+                    key={embedConfig.type}
+                    onClick={() => {
+                      activeEditor.dispatchCommand(INSERT_EMBED_COMMAND, embedConfig.type);
+                    }}
+                    className="item"
+                  >
+                    {embedConfig.icon}
+                    <span className="text">{embedConfig.contentName}</span>
+                  </DropDownItem>
+                ))}
+              </DropDown>
+            </>
+          )} */}
         </>
       )}
       {modal}

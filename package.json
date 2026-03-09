@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0-fork.6",
+  "version": "0.3.0-fork.8",
   "keywords": [],
   "type": "commonjs",
   "exports": {
@@ -24,6 +24,7 @@
     "dist"
   ],
   "scripts": {
+    "prebuild": "rm -rf ./dist",
     "build": "strapi-plugin build",
     "postbuild": "mkdir -p ./dist/src/images/ && cp -R ./admin/src/lexical/images/* ./dist/src/images/",
     "prepublishOnly": "npm run build",
