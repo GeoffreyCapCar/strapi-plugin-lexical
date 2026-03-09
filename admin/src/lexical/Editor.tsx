@@ -251,10 +251,10 @@ export default function Editor(props: LexicalEditorProps): JSX.Element {
         <div>{showTableOfContents && <TableOfContentsPlugin />}</div>
         {shouldUseLexicalContextMenu && <ContextMenuPlugin />}
         {shouldAllowHighlightingWithBrackets && <SpecialTextPlugin />}
-        <ActionsPlugin
+        {/* <ActionsPlugin
           isRichText={isRichText}
           shouldPreserveNewLinesInMarkdown={shouldPreserveNewLinesInMarkdown}
-        />
+        /> */}
       </div>
       {showTreeView && <TreeViewPlugin />}
       <StrapiOnChangePlugin onChange={onChange} expectedEditorState={props.expectedEditorState} />

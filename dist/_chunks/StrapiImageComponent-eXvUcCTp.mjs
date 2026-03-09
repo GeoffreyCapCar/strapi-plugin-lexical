@@ -1,17 +1,15 @@
-"use strict";
-Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("react/jsx-runtime");
-const LexicalComposerContext = require("@lexical/react/LexicalComposerContext");
-const useLexicalEditable = require("@lexical/react/useLexicalEditable");
-const useLexicalNodeSelection = require("@lexical/react/useLexicalNodeSelection");
-const utils = require("@lexical/utils");
-const lexical = require("lexical");
-const React = require("react");
-const imageBroken = require("./image-broken-DvpTkJDI.js");
-const Input = require("./Input-BSE-dPQC.js");
-const reactIntl = require("react-intl");
+import { jsx, Fragment } from "react/jsx-runtime";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { useLexicalEditable } from "@lexical/react/useLexicalEditable";
+import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
+import { mergeRegister } from "@lexical/utils";
+import { $getSelection, $isNodeSelection, $setSelection, $isRangeSelection, SELECTION_CHANGE_COMMAND, COMMAND_PRIORITY_LOW, CLICK_COMMAND, DRAGSTART_COMMAND, KEY_DELETE_COMMAND, KEY_BACKSPACE_COMMAND, KEY_ENTER_COMMAND, KEY_ESCAPE_COMMAND, createCommand } from "lexical";
+import { useRef, useState, useCallback, useEffect, Suspense } from "react";
+import { b as brokenImage } from "./image-broken-D4ACHRbi.mjs";
+import { a as $isImageNode } from "./Input-B32sHSVN.mjs";
+import { useIntl } from "react-intl";
 const imageCache = /* @__PURE__ */ new Set();
-const RIGHT_CLICK_STRAPI_IMAGE_COMMAND = lexical.createCommand(
+const RIGHT_CLICK_STRAPI_IMAGE_COMMAND = createCommand(
   "RIGHT_CLICK_STRAPI_IMAGE_COMMAND"
 );
 function useSuspenseImage(src) {
@@ -34,9 +32,9 @@ function LazyImage({
   src,
   onError
 }) {
-  const { formatMessage } = reactIntl.useIntl();
+  const { formatMessage } = useIntl();
   useSuspenseImage(src);
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     "img",
     {
       className: className || void 0,
@@ -51,11 +49,11 @@ function LazyImage({
   );
 }
 function BrokenImage() {
-  const { formatMessage } = reactIntl.useIntl();
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  const { formatMessage } = useIntl();
+  return /* @__PURE__ */ jsx(
     "img",
     {
-      src: imageBroken.brokenImage,
+      src: brokenImage,
       style: {
         height: 200,
         opacity: 0.2,
@@ -71,23 +69,23 @@ function StrapiImageComponent({
   src,
   nodeKey
 }) {
-  const imageRef = React.useRef(null);
-  const buttonRef = React.useRef(null);
-  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection.useLexicalNodeSelection(nodeKey);
-  const [isResizing, setIsResizing] = React.useState(false);
-  const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  const [selection, setSelection] = React.useState(null);
-  const activeEditorRef = React.useRef(null);
-  const [isLoadError, setIsLoadError] = React.useState(false);
-  const isEditable = useLexicalEditable.useLexicalEditable();
-  const $onDelete = React.useCallback(
+  const imageRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection(nodeKey);
+  const [isResizing, setIsResizing] = useState(false);
+  const [editor] = useLexicalComposerContext();
+  const [selection, setSelection] = useState(null);
+  const activeEditorRef = useRef(null);
+  const [isLoadError, setIsLoadError] = useState(false);
+  const isEditable = useLexicalEditable();
+  const $onDelete = useCallback(
     (payload) => {
-      const deleteSelection = lexical.$getSelection();
-      if (isSelected && lexical.$isNodeSelection(deleteSelection)) {
+      const deleteSelection = $getSelection();
+      if (isSelected && $isNodeSelection(deleteSelection)) {
         const event = payload;
         event.preventDefault();
         deleteSelection.getNodes().forEach((node) => {
-          if (Input.$isImageNode(node)) {
+          if ($isImageNode(node)) {
             node.remove();
           }
         });
@@ -96,11 +94,11 @@ function StrapiImageComponent({
     },
     [isSelected]
   );
-  const $onEnter = React.useCallback(
+  const $onEnter = useCallback(
     (event) => {
-      const latestSelection = lexical.$getSelection();
+      const latestSelection = $getSelection();
       const buttonElem = buttonRef.current;
-      if (isSelected && lexical.$isNodeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
+      if (isSelected && $isNodeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
         if (buttonElem !== null && buttonElem !== document.activeElement) {
           event.preventDefault();
           buttonElem.focus();
@@ -111,10 +109,10 @@ function StrapiImageComponent({
     },
     [isSelected]
   );
-  const $onEscape = React.useCallback(
+  const $onEscape = useCallback(
     (event) => {
       if (buttonRef.current === event.target) {
-        lexical.$setSelection(null);
+        $setSelection(null);
         editor.update(() => {
           setSelected(true);
           const parentRootElement = editor.getRootElement();
@@ -128,7 +126,7 @@ function StrapiImageComponent({
     },
     [editor, setSelected]
   );
-  const onClick = React.useCallback(
+  const onClick = useCallback(
     (payload) => {
       const event = payload;
       if (isResizing) {
@@ -147,43 +145,43 @@ function StrapiImageComponent({
     },
     [isResizing, isSelected, setSelected, clearSelection]
   );
-  const onRightClick = React.useCallback(
+  const onRightClick = useCallback(
     (event) => {
       editor.getEditorState().read(() => {
-        const latestSelection = lexical.$getSelection();
+        const latestSelection = $getSelection();
         const domElement = event.target;
-        if (domElement.tagName === "IMG" && lexical.$isRangeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
+        if (domElement.tagName === "IMG" && $isRangeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
           editor.dispatchCommand(RIGHT_CLICK_STRAPI_IMAGE_COMMAND, event);
         }
       });
     },
     [editor]
   );
-  React.useEffect(() => {
+  useEffect(() => {
     let isMounted = true;
     const rootElement = editor.getRootElement();
-    const unregister = utils.mergeRegister(
+    const unregister = mergeRegister(
       editor.registerUpdateListener(({ editorState }) => {
         if (isMounted) {
-          setSelection(editorState.read(() => lexical.$getSelection()));
+          setSelection(editorState.read(() => $getSelection()));
         }
       }),
       editor.registerCommand(
-        lexical.SELECTION_CHANGE_COMMAND,
+        SELECTION_CHANGE_COMMAND,
         (_, activeEditor) => {
           activeEditorRef.current = activeEditor;
           return false;
         },
-        lexical.COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW
       ),
-      editor.registerCommand(lexical.CLICK_COMMAND, onClick, lexical.COMMAND_PRIORITY_LOW),
+      editor.registerCommand(CLICK_COMMAND, onClick, COMMAND_PRIORITY_LOW),
       editor.registerCommand(
         RIGHT_CLICK_STRAPI_IMAGE_COMMAND,
         onClick,
-        lexical.COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW
       ),
       editor.registerCommand(
-        lexical.DRAGSTART_COMMAND,
+        DRAGSTART_COMMAND,
         (event) => {
           if (event.target === imageRef.current) {
             event.preventDefault();
@@ -191,12 +189,12 @@ function StrapiImageComponent({
           }
           return false;
         },
-        lexical.COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW
       ),
-      editor.registerCommand(lexical.KEY_DELETE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW),
-      editor.registerCommand(lexical.KEY_BACKSPACE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW),
-      editor.registerCommand(lexical.KEY_ENTER_COMMAND, $onEnter, lexical.COMMAND_PRIORITY_LOW),
-      editor.registerCommand(lexical.KEY_ESCAPE_COMMAND, $onEscape, lexical.COMMAND_PRIORITY_LOW)
+      editor.registerCommand(KEY_DELETE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW),
+      editor.registerCommand(KEY_BACKSPACE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW),
+      editor.registerCommand(KEY_ENTER_COMMAND, $onEnter, COMMAND_PRIORITY_LOW),
+      editor.registerCommand(KEY_ESCAPE_COMMAND, $onEscape, COMMAND_PRIORITY_LOW)
     );
     rootElement?.addEventListener("contextmenu", onRightClick);
     return () => {
@@ -217,17 +215,19 @@ function StrapiImageComponent({
     onRightClick,
     setSelected
   ]);
-  const draggable = isSelected && lexical.$isNodeSelection(selection) && !isResizing;
+  const draggable = isSelected && $isNodeSelection(selection) && !isResizing;
   const isFocused = (isSelected || isResizing) && isEditable;
-  return /* @__PURE__ */ jsxRuntime.jsx(React.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntime.jsx(jsxRuntime.Fragment, { children: /* @__PURE__ */ jsxRuntime.jsx("div", { draggable, children: isLoadError ? /* @__PURE__ */ jsxRuntime.jsx(BrokenImage, {}) : /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(Suspense, { fallback: null, children: /* @__PURE__ */ jsx(Fragment, { children: /* @__PURE__ */ jsx("div", { draggable, children: isLoadError ? /* @__PURE__ */ jsx(BrokenImage, {}) : /* @__PURE__ */ jsx(
     LazyImage,
     {
-      className: isFocused ? `focused ${lexical.$isNodeSelection(selection) ? "draggable" : ""}` : null,
+      className: isFocused ? `focused ${$isNodeSelection(selection) ? "draggable" : ""}` : null,
       src,
       imageRef,
       onError: () => setIsLoadError(true)
     }
   ) }) }) });
 }
-exports.RIGHT_CLICK_STRAPI_IMAGE_COMMAND = RIGHT_CLICK_STRAPI_IMAGE_COMMAND;
-exports.default = StrapiImageComponent;
+export {
+  RIGHT_CLICK_STRAPI_IMAGE_COMMAND,
+  StrapiImageComponent as default
+};
