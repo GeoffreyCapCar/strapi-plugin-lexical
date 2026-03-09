@@ -18,8 +18,6 @@ export const SHORTCUTS = Object.freeze({
   HEADING5: IS_APPLE ? '⌘+Opt+3' : 'Ctrl+Alt+3',
   BULLET_LIST: IS_APPLE ? '⌘+Opt+4' : 'Ctrl+Alt+4',
   NUMBERED_LIST: IS_APPLE ? '⌘+Opt+5' : 'Ctrl+Alt+5',
-  CHECK_LIST: IS_APPLE ? '⌘+Opt+6' : 'Ctrl+Alt+6',
-  CODE_BLOCK: IS_APPLE ? '⌘+Opt+C' : 'Ctrl+Alt+C',
   QUOTE: IS_APPLE ? '⌘+Opt+Q' : 'Ctrl+Alt+Q',
 
   // (Ctrl|⌘) + Shift + <key> shortcuts

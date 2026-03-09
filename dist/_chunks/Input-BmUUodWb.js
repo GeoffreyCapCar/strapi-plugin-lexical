@@ -312,7 +312,7 @@ async function docFromHash(hash) {
   await closed;
   return JSON.parse(output.join(""));
 }
-const EquationComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./EquationComponent-Ds_4OuTu.js")));
+const EquationComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./EquationComponent-CSbuO1oZ.js")));
 function $convertEquationElement(domNode) {
   let equation = domNode.getAttribute("data-lexical-equation");
   const inline = domNode.getAttribute("data-lexical-inline") === "true";
@@ -416,7 +416,7 @@ function $createEquationNode(equation = "", inline = false) {
 function $isEquationNode(node) {
   return node instanceof EquationNode;
 }
-const ImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./ImageComponent-CfsMQ6RK.js")));
+const ImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./ImageComponent-B5BHLYQW.js")));
 function isGoogleDocCheckboxImg(img2) {
   return img2.parentElement != null && img2.parentElement.tagName === "LI" && img2.previousSibling === null && img2.getAttribute("aria-roledescription") === "checkbox";
 }
@@ -20215,7 +20215,7 @@ function PageBreakPlugin() {
   }, [editor]);
   return null;
 }
-const PollComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./PollComponent-DtDxnnec.js")));
+const PollComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./PollComponent-DiqvEMzF.js")));
 function createUID() {
   return Math.random().toString(36).replace(/[^a-z]+/g, "").slice(0, 5);
 }
@@ -22022,7 +22022,7 @@ function FloatingTextFormatToolbarPlugin({
   const [editor] = LexicalComposerContext.useLexicalComposerContext();
   return useFloatingTextFormatToolbar(editor, anchorElem, setIsLinkEditMode);
 }
-const InlineImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./InlineImageComponent-CEt9CXOw.js")));
+const InlineImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./InlineImageComponent-CQ6W_Lsi.js")));
 function $convertInlineImageElement(domNode) {
   if (lexical.isHTMLElement(domNode) && domNode.nodeName === "IMG") {
     const { alt: altText, src, width, height } = domNode;
@@ -23284,8 +23284,6 @@ const SHORTCUTS = Object.freeze({
   HEADING5: IS_APPLE ? "⌘+Opt+3" : "Ctrl+Alt+3",
   BULLET_LIST: IS_APPLE ? "⌘+Opt+4" : "Ctrl+Alt+4",
   NUMBERED_LIST: IS_APPLE ? "⌘+Opt+5" : "Ctrl+Alt+5",
-  CHECK_LIST: IS_APPLE ? "⌘+Opt+6" : "Ctrl+Alt+6",
-  CODE_BLOCK: IS_APPLE ? "⌘+Opt+C" : "Ctrl+Alt+C",
   QUOTE: IS_APPLE ? "⌘+Opt+Q" : "Ctrl+Alt+Q",
   // (Ctrl|⌘) + Shift + <key> shortcuts
   INCREASE_FONT_SIZE: IS_APPLE ? "⌘+Shift+." : "Ctrl+Shift+.",
@@ -26021,7 +26019,7 @@ function LexicalContentEditable({
     }
   );
 }
-const StrapiImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StrapiImageComponent-BdQrNq9K.js")));
+const StrapiImageComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StrapiImageComponent-DAoKyGdI.js")));
 class StrapiImageNode extends lexical.DecoratorNode {
   __documentId;
   __src;
@@ -26501,7 +26499,7 @@ const theme = {
     uppercase: "PlaygroundEditorTheme__textUppercase"
   }
 };
-const StickyComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StickyComponent-C525FtaC.js")));
+const StickyComponent = React__namespace.lazy(() => Promise.resolve().then(() => require("./StickyComponent-DF36YbH4.js")));
 class StickyNode extends lexical.DecoratorNode {
   __x;
   __y;

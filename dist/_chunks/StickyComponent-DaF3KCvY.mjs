@@ -1,20 +1,18 @@
-"use strict";
-Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("react/jsx-runtime");
-const LexicalCollaborationContext = require("@lexical/react/LexicalCollaborationContext");
-const LexicalComposerContext = require("@lexical/react/LexicalComposerContext");
-const LexicalErrorBoundary = require("@lexical/react/LexicalErrorBoundary");
-const LexicalHistoryPlugin = require("@lexical/react/LexicalHistoryPlugin");
-const LexicalNestedComposer = require("@lexical/react/LexicalNestedComposer");
-const LexicalPlainTextPlugin = require("@lexical/react/LexicalPlainTextPlugin");
-const utils = require("@lexical/utils");
-const lexical = require("lexical");
-const React = require("react");
-const Input = require("./Input-DIDxTLmb.js");
-const reactIntl = require("react-intl");
-const useLayoutEffectImpl = Input.CAN_USE_DOM ? React.useLayoutEffect : React.useEffect;
+import { jsx, jsxs } from "react/jsx-runtime";
+import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
+import { PlainTextPlugin } from "@lexical/react/LexicalPlainTextPlugin";
+import { calculateZoomLevel } from "@lexical/utils";
+import { $getNodeByKey } from "lexical";
+import { useLayoutEffect, useEffect, useRef } from "react";
+import { C as CAN_USE_DOM, t as theme$1, u as useSharedHistoryContext, e as LexicalContentEditable, k as $isStickyNode } from "./Input-ChDt0ozq.mjs";
+import { useIntl } from "react-intl";
+const useLayoutEffectImpl = CAN_USE_DOM ? useLayoutEffect : useEffect;
 const theme = {
-  ...Input.theme,
+  ...theme$1,
   paragraph: "StickyEditorTheme__paragraph"
 };
 function positionSticky(stickyElem, positioning) {
@@ -32,10 +30,10 @@ function StickyComponent({
   color,
   caption
 }) {
-  const { formatMessage } = reactIntl.useIntl();
-  const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  const stickyContainerRef = React.useRef(null);
-  const positioningRef = React.useRef({
+  const { formatMessage } = useIntl();
+  const [editor] = useLexicalComposerContext();
+  const stickyContainerRef = useRef(null);
+  const positioningRef = useRef({
     isDragging: false,
     offsetX: 0,
     offsetY: 0,
@@ -43,8 +41,8 @@ function StickyComponent({
     x: 0,
     y: 0
   });
-  LexicalCollaborationContext.useCollaborationContext();
-  React.useEffect(() => {
+  useCollaborationContext();
+  useEffect(() => {
     const position = positioningRef.current;
     position.x = x;
     position.y = y;
@@ -88,7 +86,7 @@ function StickyComponent({
       removeRootListener();
     };
   }, [editor]);
-  React.useEffect(() => {
+  useEffect(() => {
     const stickyContainer = stickyContainerRef.current;
     if (stickyContainer !== null) {
       setTimeout(() => {
@@ -100,7 +98,7 @@ function StickyComponent({
     const stickyContainer = stickyContainerRef.current;
     const positioning = positioningRef.current;
     const rootElementRect = positioning.rootElementRect;
-    const zoom = utils.calculateZoomLevel(stickyContainer);
+    const zoom = calculateZoomLevel(stickyContainer);
     if (stickyContainer !== null && positioning.isDragging && rootElementRect !== null) {
       positioning.x = event.pageX / zoom - positioning.offsetX - rootElementRect.left;
       positioning.y = event.pageY / zoom - positioning.offsetY - rootElementRect.top;
@@ -114,8 +112,8 @@ function StickyComponent({
       positioning.isDragging = false;
       stickyContainer.classList.remove("dragging");
       editor.update(() => {
-        const node = lexical.$getNodeByKey(nodeKey);
-        if (Input.$isStickyNode(node)) {
+        const node = $getNodeByKey(nodeKey);
+        if ($isStickyNode(node)) {
           node.setPosition(positioning.x, positioning.y);
         }
       });
@@ -125,22 +123,22 @@ function StickyComponent({
   };
   const handleDelete = () => {
     editor.update(() => {
-      const node = lexical.$getNodeByKey(nodeKey);
-      if (Input.$isStickyNode(node)) {
+      const node = $getNodeByKey(nodeKey);
+      if ($isStickyNode(node)) {
         node.remove();
       }
     });
   };
   const handleColorChange = () => {
     editor.update(() => {
-      const node = lexical.$getNodeByKey(nodeKey);
-      if (Input.$isStickyNode(node)) {
+      const node = $getNodeByKey(nodeKey);
+      if ($isStickyNode(node)) {
         node.toggleColor();
       }
     });
   };
-  const { historyState } = Input.useSharedHistoryContext();
-  return /* @__PURE__ */ jsxRuntime.jsx("div", { ref: stickyContainerRef, className: "sticky-note-container", children: /* @__PURE__ */ jsxRuntime.jsxs(
+  const { historyState } = useSharedHistoryContext();
+  return /* @__PURE__ */ jsx("div", { ref: stickyContainerRef, className: "sticky-note-container", children: /* @__PURE__ */ jsxs(
     "div",
     {
       className: `sticky-note ${color}`,
@@ -153,7 +151,7 @@ function StickyComponent({
         const positioning = positioningRef.current;
         if (stickContainer !== null) {
           const { top, left } = stickContainer.getBoundingClientRect();
-          const zoom = utils.calculateZoomLevel(stickContainer);
+          const zoom = calculateZoomLevel(stickContainer);
           positioning.offsetX = event.clientX / zoom - left;
           positioning.offsetY = event.clientY / zoom - top;
           positioning.isDragging = true;
@@ -164,7 +162,7 @@ function StickyComponent({
         }
       },
       children: [
-        /* @__PURE__ */ jsxRuntime.jsx(
+        /* @__PURE__ */ jsx(
           "button",
           {
             onClick: handleDelete,
@@ -177,7 +175,7 @@ function StickyComponent({
             children: "X"
           }
         ),
-        /* @__PURE__ */ jsxRuntime.jsx(
+        /* @__PURE__ */ jsx(
           "button",
           {
             onClick: handleColorChange,
@@ -187,16 +185,16 @@ function StickyComponent({
               defaultMessage: "Change sticky note color"
             }),
             title: formatMessage({ id: "lexical.sticky.color.title", defaultMessage: "Color" }),
-            children: /* @__PURE__ */ jsxRuntime.jsx("i", { className: "bucket" })
+            children: /* @__PURE__ */ jsx("i", { className: "bucket" })
           }
         ),
-        /* @__PURE__ */ jsxRuntime.jsxs(LexicalNestedComposer.LexicalNestedComposer, { initialEditor: caption, initialTheme: theme, children: [
-          /* @__PURE__ */ jsxRuntime.jsx(LexicalHistoryPlugin.HistoryPlugin, { externalHistoryState: historyState }),
-          /* @__PURE__ */ jsxRuntime.jsx(
-            LexicalPlainTextPlugin.PlainTextPlugin,
+        /* @__PURE__ */ jsxs(LexicalNestedComposer, { initialEditor: caption, initialTheme: theme, children: [
+          /* @__PURE__ */ jsx(HistoryPlugin, { externalHistoryState: historyState }),
+          /* @__PURE__ */ jsx(
+            PlainTextPlugin,
             {
-              contentEditable: /* @__PURE__ */ jsxRuntime.jsx(
-                Input.LexicalContentEditable,
+              contentEditable: /* @__PURE__ */ jsx(
+                LexicalContentEditable,
                 {
                   placeholder: formatMessage({
                     id: "lexical.sticky.placeholder",
@@ -206,7 +204,7 @@ function StickyComponent({
                   className: "StickyNode__contentEditable"
                 }
               ),
-              ErrorBoundary: LexicalErrorBoundary.LexicalErrorBoundary
+              ErrorBoundary: LexicalErrorBoundary
             }
           )
         ] })
@@ -214,4 +212,6 @@ function StickyComponent({
     }
   ) });
 }
-exports.default = StickyComponent;
+export {
+  StickyComponent as default
+};

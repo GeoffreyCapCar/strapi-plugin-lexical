@@ -1,12 +1,14 @@
-import { jsx, jsxs } from "react/jsx-runtime";
-import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
-import { $getSelection, $isNodeSelection, CLICK_COMMAND, COMMAND_PRIORITY_LOW, KEY_DELETE_COMMAND, KEY_BACKSPACE_COMMAND, $getNodeByKey } from "lexical";
-import { useMemo, useState, useRef, useCallback, useEffect } from "react";
-import { useIntl } from "react-intl";
-import { h as $isPollNode, B as Button, j as joinClasses, i as createPollOption } from "./Input-ByV0bTrR.mjs";
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const jsxRuntime = require("react/jsx-runtime");
+const LexicalCollaborationContext = require("@lexical/react/LexicalCollaborationContext");
+const LexicalComposerContext = require("@lexical/react/LexicalComposerContext");
+const useLexicalNodeSelection = require("@lexical/react/useLexicalNodeSelection");
+const utils = require("@lexical/utils");
+const lexical = require("lexical");
+const React = require("react");
+const reactIntl = require("react-intl");
+const Input = require("./Input-BmUUodWb.js");
 function getTotalVotes(options) {
   return options.reduce((totalVotes, next) => {
     return totalVotes + next.votes.length;
@@ -19,23 +21,23 @@ function PollOptionComponent({
   totalVotes,
   withPollNode
 }) {
-  const { clientID } = useCollaborationContext();
-  const checkboxRef = useRef(null);
+  const { clientID } = LexicalCollaborationContext.useCollaborationContext();
+  const checkboxRef = React.useRef(null);
   const votesArray = option.votes;
   const checkedIndex = votesArray.indexOf(clientID);
   const checked = checkedIndex !== -1;
   const votes = votesArray.length;
   const text = option.text;
-  const { formatMessage } = useIntl();
-  return /* @__PURE__ */ jsxs("div", { className: "PollNode__optionContainer", children: [
-    /* @__PURE__ */ jsx(
+  const { formatMessage } = reactIntl.useIntl();
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "PollNode__optionContainer", children: [
+    /* @__PURE__ */ jsxRuntime.jsx(
       "div",
       {
-        className: joinClasses(
+        className: Input.joinClasses(
           "PollNode__optionCheckboxWrapper",
           checked && "PollNode__optionCheckboxChecked"
         ),
-        children: /* @__PURE__ */ jsx(
+        children: /* @__PURE__ */ jsxRuntime.jsx(
           "input",
           {
             ref: checkboxRef,
@@ -51,22 +53,22 @@ function PollOptionComponent({
         )
       }
     ),
-    /* @__PURE__ */ jsxs("div", { className: "PollNode__optionInputWrapper", children: [
-      /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "PollNode__optionInputWrapper", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(
         "div",
         {
           className: "PollNode__optionInputVotes",
           style: { width: `${votes === 0 ? 0 : votes / totalVotes * 100}%` }
         }
       ),
-      /* @__PURE__ */ jsx("span", { className: "PollNode__optionInputVotesCount", children: votes > 0 && formatMessage(
+      /* @__PURE__ */ jsxRuntime.jsx("span", { className: "PollNode__optionInputVotesCount", children: votes > 0 && formatMessage(
         {
           id: "lexical.nodes.poll.votes",
           defaultMessage: "{count} {count, plural, one {vote} other {votes}}"
         },
         { count: votes }
       ) }),
-      /* @__PURE__ */ jsx(
+      /* @__PURE__ */ jsxRuntime.jsx(
         "input",
         {
           className: "PollNode__optionInput",
@@ -94,11 +96,11 @@ function PollOptionComponent({
         }
       )
     ] }),
-    /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsxRuntime.jsx(
       "button",
       {
         disabled: options.length < 3,
-        className: joinClasses(
+        className: Input.joinClasses(
           "PollNode__optionDelete",
           options.length < 3 && "PollNode__optionDeleteDisabled"
         ),
@@ -120,20 +122,20 @@ function PollComponent({
   options,
   nodeKey
 }) {
-  const { formatMessage } = useIntl();
-  const [editor] = useLexicalComposerContext();
-  const totalVotes = useMemo(() => getTotalVotes(options), [options]);
-  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection(nodeKey);
-  const [selection, setSelection] = useState(null);
-  const ref = useRef(null);
-  const $onDelete = useCallback(
+  const { formatMessage } = reactIntl.useIntl();
+  const [editor] = LexicalComposerContext.useLexicalComposerContext();
+  const totalVotes = React.useMemo(() => getTotalVotes(options), [options]);
+  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection.useLexicalNodeSelection(nodeKey);
+  const [selection, setSelection] = React.useState(null);
+  const ref = React.useRef(null);
+  const $onDelete = React.useCallback(
     (payload) => {
-      const deleteSelection = $getSelection();
-      if (isSelected && $isNodeSelection(deleteSelection)) {
+      const deleteSelection = lexical.$getSelection();
+      if (isSelected && lexical.$isNodeSelection(deleteSelection)) {
         const event = payload;
         event.preventDefault();
         deleteSelection.getNodes().forEach((node) => {
-          if ($isPollNode(node)) {
+          if (Input.$isPollNode(node)) {
             node.remove();
           }
         });
@@ -142,13 +144,13 @@ function PollComponent({
     },
     [isSelected]
   );
-  useEffect(() => {
-    return mergeRegister(
+  React.useEffect(() => {
+    return utils.mergeRegister(
       editor.registerUpdateListener(({ editorState }) => {
-        setSelection(editorState.read(() => $getSelection()));
+        setSelection(editorState.read(() => lexical.$getSelection()));
       }),
       editor.registerCommand(
-        CLICK_COMMAND,
+        lexical.CLICK_COMMAND,
         (payload) => {
           const event = payload;
           if (event.target === ref.current) {
@@ -160,17 +162,17 @@ function PollComponent({
           }
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        lexical.COMMAND_PRIORITY_LOW
       ),
-      editor.registerCommand(KEY_DELETE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW),
-      editor.registerCommand(KEY_BACKSPACE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW)
+      editor.registerCommand(lexical.KEY_DELETE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW),
+      editor.registerCommand(lexical.KEY_BACKSPACE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW)
     );
   }, [clearSelection, editor, isSelected, nodeKey, $onDelete, setSelected]);
   const withPollNode = (cb, onUpdate) => {
     editor.update(
       () => {
-        const node = $getNodeByKey(nodeKey);
-        if ($isPollNode(node)) {
+        const node = lexical.$getNodeByKey(nodeKey);
+        if (Input.$isPollNode(node)) {
           cb(node);
         }
       },
@@ -179,15 +181,15 @@ function PollComponent({
   };
   const addOption = () => {
     withPollNode((node) => {
-      node.addOption(createPollOption());
+      node.addOption(Input.createPollOption());
     });
   };
-  const isFocused = $isNodeSelection(selection) && isSelected;
-  return /* @__PURE__ */ jsx("div", { className: `PollNode__container ${isFocused ? "focused" : ""}`, ref, children: /* @__PURE__ */ jsxs("div", { className: "PollNode__inner", children: [
-    /* @__PURE__ */ jsx("h2", { className: "PollNode__heading", children: question }),
+  const isFocused = lexical.$isNodeSelection(selection) && isSelected;
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: `PollNode__container ${isFocused ? "focused" : ""}`, ref, children: /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "PollNode__inner", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("h2", { className: "PollNode__heading", children: question }),
     options.map((option, index) => {
       const key = option.uid;
-      return /* @__PURE__ */ jsx(
+      return /* @__PURE__ */ jsxRuntime.jsx(
         PollOptionComponent,
         {
           withPollNode,
@@ -199,9 +201,7 @@ function PollComponent({
         key
       );
     }),
-    /* @__PURE__ */ jsx("div", { className: "PollNode__footer", children: /* @__PURE__ */ jsx(Button, { onClick: addOption, small: true, children: formatMessage({ id: "lexical.nodes.poll.option.add", defaultMessage: "Add Option" }) }) })
+    /* @__PURE__ */ jsxRuntime.jsx("div", { className: "PollNode__footer", children: /* @__PURE__ */ jsxRuntime.jsx(Input.Button, { onClick: addOption, small: true, children: formatMessage({ id: "lexical.nodes.poll.option.add", defaultMessage: "Add Option" }) }) })
   ] }) });
 }
-export {
-  PollComponent as default
-};
+exports.default = PollComponent;
