@@ -1,5 +1,5 @@
 {
-  "version": "0.3.0",
+  "version": "0.3.1",
   "keywords": [],
   "type": "commonjs",
   "exports": {
@@ -26,6 +26,7 @@
   "scripts": {
     "build": "strapi-plugin build",
     "prebuild": "mkdir -p ./dist/src/images/ && cp -R ./admin/src/lexical/images/* ./dist/src/images/",
+    "postinstall": "npm run build",
     "prepublishOnly": "npm run build",
     "format": "prettier admin server --write",
     "format:check": "npm run format -- --check",
@@ -95,12 +96,12 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+ssh://git@github.com/hashbite/strapi-plugin-lexical.git"
+    "url": "git+https://github.com/GeoffreyCapCar/strapi-plugin-lexical.git"
   },
   "bugs": {
-    "url": "https://github.com/hashbite/strapi-plugin-lexical/issues"
+    "url": "https://github.com/GeoffreyCapCar/strapi-plugin-lexical/issues"
   },
-  "homepage": "https://github.com/hashbite/strapi-plugin-lexical#readme",
+  "homepage": "https://github.com/GeoffreyCapCar/strapi-plugin-lexical#readme",
   "author": "Benedikt Rötsch <benedikt@hashbite.net>",
   "lint-staged": {
     "*.{js,jsx,ts,tsx,json}": "prettier --write"
