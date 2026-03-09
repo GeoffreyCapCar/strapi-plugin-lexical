@@ -9,12 +9,6 @@
 import type { JSX } from 'react';
 import { useIntl } from 'react-intl';
 
-import {
-  $isCodeNode,
-  CODE_LANGUAGE_FRIENDLY_NAME_MAP,
-  CODE_LANGUAGE_MAP,
-  getLanguageFriendlyName,
-} from '@lexical/code';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { $isListNode, ListNode } from '@lexical/list';
 import { $isHeadingNode } from '@lexical/rich-text';
@@ -31,7 +25,6 @@ import {
   mergeRegister,
 } from '@lexical/utils';
 import {
-  $getNodeByKey,
   $getRoot,
   $getSelection,
   $isElementNode,
@@ -74,18 +67,6 @@ const rootTypeToRootName = {
   root: 'Root',
   table: 'Table',
 };
-
-function getCodeLanguageOptions(): [string, string][] {
-  const options: [string, string][] = [];
-
-  for (const [lang, friendlyName] of Object.entries(CODE_LANGUAGE_FRIENDLY_NAME_MAP)) {
-    options.push([lang, friendlyName]);
-  }
-
-  return options;
-}
-
-const CODE_LANGUAGE_OPTIONS = getCodeLanguageOptions();
 
 const FONT_FAMILY_OPTIONS: [string, string][] = [
   ['Arial', 'Arial'],
@@ -603,14 +584,6 @@ export default function ToolbarPlugin({
           if (type in blockTypeToBlockName) {
             updateToolbarState('blockType', type as keyof typeof blockTypeToBlockName);
           }
-          if ($isCodeNode(element)) {
-            const language = element.getLanguage() as keyof typeof CODE_LANGUAGE_MAP;
-            updateToolbarState(
-              'codeLanguage',
-              language ? CODE_LANGUAGE_MAP[language] || language : ''
-            );
-            return;
-          }
         }
       }
       // Handle buttons
@@ -651,9 +624,6 @@ export default function ToolbarPlugin({
       updateToolbarState('isItalic', selection.hasFormat('italic'));
       updateToolbarState('isUnderline', selection.hasFormat('underline'));
       updateToolbarState('isStrikethrough', selection.hasFormat('strikethrough'));
-      updateToolbarState('isSubscript', selection.hasFormat('subscript'));
-      updateToolbarState('isSuperscript', selection.hasFormat('superscript'));
-      updateToolbarState('isCode', selection.hasFormat('code'));
       updateToolbarState(
         'fontSize',
         $getSelectionStyleValueForProperty(selection, 'font-size', '15px')
@@ -750,19 +720,6 @@ export default function ToolbarPlugin({
     }
   }, [activeEditor, setIsLinkEditMode, toolbarState.isLink]);
 
-  const onCodeLanguageSelect = useCallback(
-    (value: string) => {
-      activeEditor.update(() => {
-        if (selectedElementKey !== null) {
-          const node = $getNodeByKey(selectedElementKey);
-          if ($isCodeNode(node)) {
-            node.setLanguage(value);
-          }
-        }
-      });
-    },
-    [activeEditor, selectedElementKey]
-  );
   return (
     <div className="toolbar">
       <button
@@ -811,29 +768,6 @@ export default function ToolbarPlugin({
             editor={activeEditor}
           />
           <Divider />
-        </>
-      )}
-      {toolbarState.blockType === 'code' ? (
-        <DropDown
-          disabled={!isEditable}
-          buttonClassName="toolbar-item code-language"
-          buttonLabel={getLanguageFriendlyName(toolbarState.codeLanguage)}
-          buttonAriaLabel="Select language"
-        >
-          {CODE_LANGUAGE_OPTIONS.map(([value, name]) => {
-            return (
-              <DropDownItem
-                className={`item ${dropDownActiveClass(value === toolbarState.codeLanguage)}`}
-                onClick={() => onCodeLanguageSelect(value)}
-                key={value}
-              >
-                <span className="text">{name}</span>
-              </DropDownItem>
-            );
-          })}
-        </DropDown>
-      ) : (
-        <>
           {/* <FontDropDown
             disabled={!isEditable}
             style={'font-family'}
@@ -1037,56 +971,6 @@ export default function ToolbarPlugin({
                 </span>
               </div>
               <span className="shortcut">{SHORTCUTS.STRIKETHROUGH}</span>
-            </DropDownItem>
-            <DropDownItem
-              onClick={() => {
-                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
-              }}
-              className={'item wide ' + dropDownActiveClass(toolbarState.isSubscript)}
-              title={formatMessage({
-                id: 'lexical.plugin.toolbar.format.subscript.title',
-                defaultMessage: 'Subscript',
-              })}
-              aria-label={formatMessage({
-                id: 'lexical.plugin.toolbar.format.subscript.aria',
-                defaultMessage: 'Format text with a subscript',
-              })}
-            >
-              <div className="icon-text-container">
-                <i className="icon subscript" />
-                <span className="text">
-                  {formatMessage({
-                    id: 'lexical.plugin.toolbar.format.subscript.text',
-                    defaultMessage: 'Subscript',
-                  })}
-                </span>
-              </div>
-              <span className="shortcut">{SHORTCUTS.SUBSCRIPT}</span>
-            </DropDownItem>
-            <DropDownItem
-              onClick={() => {
-                activeEditor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript');
-              }}
-              className={'item wide ' + dropDownActiveClass(toolbarState.isSuperscript)}
-              title={formatMessage({
-                id: 'lexical.plugin.toolbar.format.superscript.title',
-                defaultMessage: 'Superscript',
-              })}
-              aria-label={formatMessage({
-                id: 'lexical.plugin.toolbar.format.superscript.aria',
-                defaultMessage: 'Format text with a superscript',
-              })}
-            >
-              <div className="icon-text-container">
-                <i className="icon superscript" />
-                <span className="text">
-                  {formatMessage({
-                    id: 'lexical.plugin.toolbar.format.superscript.text',
-                    defaultMessage: 'Superscript',
-                  })}
-                </span>
-              </div>
-              <span className="shortcut">{SHORTCUTS.SUPERSCRIPT}</span>
             </DropDownItem>
             <DropDownItem
               onClick={() => clearFormatting(activeEditor)}

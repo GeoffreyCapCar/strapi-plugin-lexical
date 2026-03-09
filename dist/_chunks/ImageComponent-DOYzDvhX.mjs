@@ -1,29 +1,26 @@
-"use strict";
-Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
-const jsxRuntime = require("react/jsx-runtime");
-const hashtag = require("@lexical/hashtag");
-const link = require("@lexical/link");
-const LexicalAutoFocusPlugin = require("@lexical/react/LexicalAutoFocusPlugin");
-const LexicalCollaborationContext = require("@lexical/react/LexicalCollaborationContext");
-const LexicalComposerContext = require("@lexical/react/LexicalComposerContext");
-const LexicalErrorBoundary = require("@lexical/react/LexicalErrorBoundary");
-const LexicalHashtagPlugin = require("@lexical/react/LexicalHashtagPlugin");
-const LexicalHistoryPlugin = require("@lexical/react/LexicalHistoryPlugin");
-const LexicalNestedComposer = require("@lexical/react/LexicalNestedComposer");
-const LexicalRichTextPlugin = require("@lexical/react/LexicalRichTextPlugin");
-const useLexicalEditable = require("@lexical/react/useLexicalEditable");
-const useLexicalNodeSelection = require("@lexical/react/useLexicalNodeSelection");
-const utils = require("@lexical/utils");
-const lexical = require("lexical");
-const React = require("react");
-const reactIntl = require("react-intl");
-const Input = require("./Input-BmUUodWb.js");
-const imageBroken = require("./image-broken-DvpTkJDI.js");
-const LexicalTreeView = require("@lexical/react/LexicalTreeView");
+import { jsx, jsxs, Fragment } from "react/jsx-runtime";
+import { a as $isImageNode, u as useSharedHistoryContext, E as EmojiNode, n, K as KeywordNode, N as NewMentionsPlugin, L as LinkPlugin, b as EmojisPlugin, c as KeywordsPlugin, d as LexicalContentEditable } from "./Input-wFPTNyMk.mjs";
+import { LinkNode } from "@lexical/link";
+import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
+import { useCollaborationContext } from "@lexical/react/LexicalCollaborationContext";
+import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
+import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
+import { HashtagPlugin } from "@lexical/react/LexicalHashtagPlugin";
+import { HistoryPlugin } from "@lexical/react/LexicalHistoryPlugin";
+import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
+import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
+import { useLexicalEditable } from "@lexical/react/useLexicalEditable";
+import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
+import { calculateZoomLevel, mergeRegister } from "@lexical/utils";
+import { $getSelection, $isNodeSelection, $setSelection, $isRangeSelection, SELECTION_CHANGE_COMMAND, COMMAND_PRIORITY_LOW, CLICK_COMMAND, DRAGSTART_COMMAND, KEY_DELETE_COMMAND, KEY_BACKSPACE_COMMAND, KEY_ENTER_COMMAND, KEY_ESCAPE_COMMAND, RootNode, TextNode, LineBreakNode, ParagraphNode, createCommand, $getNodeByKey } from "lexical";
+import { useRef, useState, useCallback, useEffect, Suspense } from "react";
+import { useIntl } from "react-intl";
+import { b as brokenImage } from "./image-broken-D4ACHRbi.mjs";
+import { TreeView } from "@lexical/react/LexicalTreeView";
 function TreeViewPlugin() {
-  const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  return /* @__PURE__ */ jsxRuntime.jsx(
-    LexicalTreeView.TreeView,
+  const [editor] = useLexicalComposerContext();
+  return /* @__PURE__ */ jsx(
+    TreeView,
     {
       viewClassName: "tree-view-output",
       treeTypeButtonClassName: "debug-treetype-button",
@@ -55,13 +52,13 @@ function ImageResizer({
   setShowCaption,
   captionsEnabled
 }) {
-  const { formatMessage } = reactIntl.useIntl();
-  const controlWrapperRef = React.useRef(null);
-  const userSelect = React.useRef({
+  const { formatMessage } = useIntl();
+  const controlWrapperRef = useRef(null);
+  const userSelect = useRef({
     priority: "",
     value: "default"
   });
-  const positioningRef = React.useRef({
+  const positioningRef = useRef({
     currentHeight: 0,
     currentWidth: 0,
     direction: 0,
@@ -114,7 +111,7 @@ function ImageResizer({
     if (image !== null && controlWrapper !== null) {
       event.preventDefault();
       const { width, height } = image.getBoundingClientRect();
-      const zoom = utils.calculateZoomLevel(image);
+      const zoom = calculateZoomLevel(image);
       const positioning = positioningRef.current;
       positioning.startWidth = width;
       positioning.startHeight = height;
@@ -140,7 +137,7 @@ function ImageResizer({
     const isHorizontal = positioning.direction & (Direction.east | Direction.west);
     const isVertical = positioning.direction & (Direction.south | Direction.north);
     if (image !== null && positioning.isResizing) {
-      const zoom = utils.calculateZoomLevel(image);
+      const zoom = calculateZoomLevel(image);
       if (isHorizontal && isVertical) {
         let diff = Math.floor(positioning.startX - event.clientX / zoom);
         diff = positioning.direction & Direction.east ? -diff : diff;
@@ -187,8 +184,8 @@ function ImageResizer({
       document.removeEventListener("pointerup", handlePointerUp);
     }
   };
-  return /* @__PURE__ */ jsxRuntime.jsxs("div", { ref: controlWrapperRef, children: [
-    !showCaption && captionsEnabled && /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsxs("div", { ref: controlWrapperRef, children: [
+    !showCaption && captionsEnabled && /* @__PURE__ */ jsx(
       "button",
       {
         className: "image-caption-button",
@@ -202,7 +199,7 @@ function ImageResizer({
         })
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-n",
@@ -215,7 +212,7 @@ function ImageResizer({
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-ne",
@@ -228,7 +225,7 @@ function ImageResizer({
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-e",
@@ -241,7 +238,7 @@ function ImageResizer({
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-se",
@@ -254,7 +251,7 @@ function ImageResizer({
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-s",
@@ -267,7 +264,7 @@ function ImageResizer({
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-sw",
@@ -280,7 +277,7 @@ function ImageResizer({
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-w",
@@ -293,7 +290,7 @@ function ImageResizer({
         }
       }
     ),
-    /* @__PURE__ */ jsxRuntime.jsx(
+    /* @__PURE__ */ jsx(
       "div",
       {
         className: "image-resizer image-resizer-nw",
@@ -309,7 +306,7 @@ function ImageResizer({
   ] });
 }
 const imageCache = /* @__PURE__ */ new Set();
-const RIGHT_CLICK_IMAGE_COMMAND = lexical.createCommand(
+const RIGHT_CLICK_IMAGE_COMMAND = createCommand(
   "RIGHT_CLICK_IMAGE_COMMAND"
 );
 function useSuspenseImage(src) {
@@ -338,7 +335,7 @@ function LazyImage({
   onError
 }) {
   useSuspenseImage(src);
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     "img",
     {
       className: className || void 0,
@@ -356,10 +353,10 @@ function LazyImage({
   );
 }
 function BrokenImage() {
-  return /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(
     "img",
     {
-      src: imageBroken.brokenImage,
+      src: brokenImage,
       style: {
         height: 200,
         opacity: 0.2,
@@ -381,25 +378,25 @@ function ImageComponent({
   caption,
   captionsEnabled
 }) {
-  const { formatMessage } = reactIntl.useIntl();
-  const imageRef = React.useRef(null);
-  const buttonRef = React.useRef(null);
-  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection.useLexicalNodeSelection(nodeKey);
-  const [isResizing, setIsResizing] = React.useState(false);
-  LexicalCollaborationContext.useCollaborationContext();
-  const [editor] = LexicalComposerContext.useLexicalComposerContext();
-  const [selection, setSelection] = React.useState(null);
-  const activeEditorRef = React.useRef(null);
-  const [isLoadError, setIsLoadError] = React.useState(false);
-  const isEditable = useLexicalEditable.useLexicalEditable();
-  const $onDelete = React.useCallback(
+  const { formatMessage } = useIntl();
+  const imageRef = useRef(null);
+  const buttonRef = useRef(null);
+  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection(nodeKey);
+  const [isResizing, setIsResizing] = useState(false);
+  useCollaborationContext();
+  const [editor] = useLexicalComposerContext();
+  const [selection, setSelection] = useState(null);
+  const activeEditorRef = useRef(null);
+  const [isLoadError, setIsLoadError] = useState(false);
+  const isEditable = useLexicalEditable();
+  const $onDelete = useCallback(
     (payload) => {
-      const deleteSelection = lexical.$getSelection();
-      if (isSelected && lexical.$isNodeSelection(deleteSelection)) {
+      const deleteSelection = $getSelection();
+      if (isSelected && $isNodeSelection(deleteSelection)) {
         const event = payload;
         event.preventDefault();
         deleteSelection.getNodes().forEach((node) => {
-          if (Input.$isImageNode(node)) {
+          if ($isImageNode(node)) {
             node.remove();
           }
         });
@@ -408,13 +405,13 @@ function ImageComponent({
     },
     [isSelected]
   );
-  const $onEnter = React.useCallback(
+  const $onEnter = useCallback(
     (event) => {
-      const latestSelection = lexical.$getSelection();
+      const latestSelection = $getSelection();
       const buttonElem = buttonRef.current;
-      if (isSelected && lexical.$isNodeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
+      if (isSelected && $isNodeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
         if (showCaption) {
-          lexical.$setSelection(null);
+          $setSelection(null);
           event.preventDefault();
           caption.focus();
           return true;
@@ -428,10 +425,10 @@ function ImageComponent({
     },
     [caption, isSelected, showCaption]
   );
-  const $onEscape = React.useCallback(
+  const $onEscape = useCallback(
     (event) => {
       if (activeEditorRef.current === caption || buttonRef.current === event.target) {
-        lexical.$setSelection(null);
+        $setSelection(null);
         editor.update(() => {
           setSelected(true);
           const parentRootElement = editor.getRootElement();
@@ -445,7 +442,7 @@ function ImageComponent({
     },
     [caption, editor, setSelected]
   );
-  const onClick = React.useCallback(
+  const onClick = useCallback(
     (payload) => {
       const event = payload;
       if (isResizing) {
@@ -464,39 +461,39 @@ function ImageComponent({
     },
     [isResizing, isSelected, setSelected, clearSelection]
   );
-  const onRightClick = React.useCallback(
+  const onRightClick = useCallback(
     (event) => {
       editor.getEditorState().read(() => {
-        const latestSelection = lexical.$getSelection();
+        const latestSelection = $getSelection();
         const domElement = event.target;
-        if (domElement.tagName === "IMG" && lexical.$isRangeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
+        if (domElement.tagName === "IMG" && $isRangeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
           editor.dispatchCommand(RIGHT_CLICK_IMAGE_COMMAND, event);
         }
       });
     },
     [editor]
   );
-  React.useEffect(() => {
+  useEffect(() => {
     let isMounted = true;
     const rootElement = editor.getRootElement();
-    const unregister = utils.mergeRegister(
+    const unregister = mergeRegister(
       editor.registerUpdateListener(({ editorState }) => {
         if (isMounted) {
-          setSelection(editorState.read(() => lexical.$getSelection()));
+          setSelection(editorState.read(() => $getSelection()));
         }
       }),
       editor.registerCommand(
-        lexical.SELECTION_CHANGE_COMMAND,
+        SELECTION_CHANGE_COMMAND,
         (_, activeEditor) => {
           activeEditorRef.current = activeEditor;
           return false;
         },
-        lexical.COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW
       ),
-      editor.registerCommand(lexical.CLICK_COMMAND, onClick, lexical.COMMAND_PRIORITY_LOW),
-      editor.registerCommand(RIGHT_CLICK_IMAGE_COMMAND, onClick, lexical.COMMAND_PRIORITY_LOW),
+      editor.registerCommand(CLICK_COMMAND, onClick, COMMAND_PRIORITY_LOW),
+      editor.registerCommand(RIGHT_CLICK_IMAGE_COMMAND, onClick, COMMAND_PRIORITY_LOW),
       editor.registerCommand(
-        lexical.DRAGSTART_COMMAND,
+        DRAGSTART_COMMAND,
         (event) => {
           if (event.target === imageRef.current) {
             event.preventDefault();
@@ -504,12 +501,12 @@ function ImageComponent({
           }
           return false;
         },
-        lexical.COMMAND_PRIORITY_LOW
+        COMMAND_PRIORITY_LOW
       ),
-      editor.registerCommand(lexical.KEY_DELETE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW),
-      editor.registerCommand(lexical.KEY_BACKSPACE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW),
-      editor.registerCommand(lexical.KEY_ENTER_COMMAND, $onEnter, lexical.COMMAND_PRIORITY_LOW),
-      editor.registerCommand(lexical.KEY_ESCAPE_COMMAND, $onEscape, lexical.COMMAND_PRIORITY_LOW)
+      editor.registerCommand(KEY_DELETE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW),
+      editor.registerCommand(KEY_BACKSPACE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW),
+      editor.registerCommand(KEY_ENTER_COMMAND, $onEnter, COMMAND_PRIORITY_LOW),
+      editor.registerCommand(KEY_ESCAPE_COMMAND, $onEscape, COMMAND_PRIORITY_LOW)
     );
     rootElement?.addEventListener("contextmenu", onRightClick);
     return () => {
@@ -532,8 +529,8 @@ function ImageComponent({
   ]);
   const setShowCaption = () => {
     editor.update(() => {
-      const node = lexical.$getNodeByKey(nodeKey);
-      if (Input.$isImageNode(node)) {
+      const node = $getNodeByKey(nodeKey);
+      if ($isImageNode(node)) {
         node.setShowCaption(true);
       }
     });
@@ -543,8 +540,8 @@ function ImageComponent({
       setIsResizing(false);
     }, 200);
     editor.update(() => {
-      const node = lexical.$getNodeByKey(nodeKey);
-      if (Input.$isImageNode(node)) {
+      const node = $getNodeByKey(nodeKey);
+      if ($isImageNode(node)) {
         node.setWidthAndHeight(nextWidth, nextHeight);
       }
     });
@@ -552,14 +549,14 @@ function ImageComponent({
   const onResizeStart = () => {
     setIsResizing(true);
   };
-  const { historyState } = Input.useSharedHistoryContext();
-  const draggable = isSelected && lexical.$isNodeSelection(selection) && !isResizing;
+  const { historyState } = useSharedHistoryContext();
+  const draggable = isSelected && $isNodeSelection(selection) && !isResizing;
   const isFocused = (isSelected || isResizing) && isEditable;
-  return /* @__PURE__ */ jsxRuntime.jsx(React.Suspense, { fallback: null, children: /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
-    /* @__PURE__ */ jsxRuntime.jsx("div", { draggable, children: isLoadError ? /* @__PURE__ */ jsxRuntime.jsx(BrokenImage, {}) : /* @__PURE__ */ jsxRuntime.jsx(
+  return /* @__PURE__ */ jsx(Suspense, { fallback: null, children: /* @__PURE__ */ jsxs(Fragment, { children: [
+    /* @__PURE__ */ jsx("div", { draggable, children: isLoadError ? /* @__PURE__ */ jsx(BrokenImage, {}) : /* @__PURE__ */ jsx(
       LazyImage,
       {
-        className: isFocused ? `focused ${lexical.$isNodeSelection(selection) ? "draggable" : ""}` : null,
+        className: isFocused ? `focused ${$isNodeSelection(selection) ? "draggable" : ""}` : null,
         src,
         altText,
         imageRef,
@@ -569,33 +566,33 @@ function ImageComponent({
         onError: () => setIsLoadError(true)
       }
     ) }),
-    showCaption && /* @__PURE__ */ jsxRuntime.jsx("div", { className: "image-caption-container", children: /* @__PURE__ */ jsxRuntime.jsxs(
-      LexicalNestedComposer.LexicalNestedComposer,
+    showCaption && /* @__PURE__ */ jsx("div", { className: "image-caption-container", children: /* @__PURE__ */ jsxs(
+      LexicalNestedComposer,
       {
         initialEditor: caption,
         initialNodes: [
-          lexical.RootNode,
-          lexical.TextNode,
-          lexical.LineBreakNode,
-          lexical.ParagraphNode,
-          link.LinkNode,
-          Input.EmojiNode,
-          hashtag.HashtagNode,
-          Input.KeywordNode
+          RootNode,
+          TextNode,
+          LineBreakNode,
+          ParagraphNode,
+          LinkNode,
+          EmojiNode,
+          n,
+          KeywordNode
         ],
         children: [
-          /* @__PURE__ */ jsxRuntime.jsx(LexicalAutoFocusPlugin.AutoFocusPlugin, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(Input.NewMentionsPlugin, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(Input.LinkPlugin, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(Input.EmojisPlugin, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(LexicalHashtagPlugin.HashtagPlugin, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(Input.KeywordsPlugin, {}),
-          /* @__PURE__ */ jsxRuntime.jsx(LexicalHistoryPlugin.HistoryPlugin, { externalHistoryState: historyState }),
-          /* @__PURE__ */ jsxRuntime.jsx(
-            LexicalRichTextPlugin.RichTextPlugin,
+          /* @__PURE__ */ jsx(AutoFocusPlugin, {}),
+          /* @__PURE__ */ jsx(NewMentionsPlugin, {}),
+          /* @__PURE__ */ jsx(LinkPlugin, {}),
+          /* @__PURE__ */ jsx(EmojisPlugin, {}),
+          /* @__PURE__ */ jsx(HashtagPlugin, {}),
+          /* @__PURE__ */ jsx(KeywordsPlugin, {}),
+          /* @__PURE__ */ jsx(HistoryPlugin, { externalHistoryState: historyState }),
+          /* @__PURE__ */ jsx(
+            RichTextPlugin,
             {
-              contentEditable: /* @__PURE__ */ jsxRuntime.jsx(
-                Input.LexicalContentEditable,
+              contentEditable: /* @__PURE__ */ jsx(
+                LexicalContentEditable,
                 {
                   placeholder: formatMessage({
                     id: "lexical.nodes.image-component.caption.placeholder",
@@ -605,14 +602,14 @@ function ImageComponent({
                   className: "ImageNode__contentEditable"
                 }
               ),
-              ErrorBoundary: LexicalErrorBoundary.LexicalErrorBoundary
+              ErrorBoundary: LexicalErrorBoundary
             }
           ),
-          /* @__PURE__ */ jsxRuntime.jsx(TreeViewPlugin, {})
+          /* @__PURE__ */ jsx(TreeViewPlugin, {})
         ]
       }
     ) }),
-    resizable && lexical.$isNodeSelection(selection) && isFocused && /* @__PURE__ */ jsxRuntime.jsx(
+    resizable && $isNodeSelection(selection) && isFocused && /* @__PURE__ */ jsx(
       ImageResizer,
       {
         showCaption,
@@ -628,5 +625,7 @@ function ImageComponent({
     )
   ] }) });
 }
-exports.RIGHT_CLICK_IMAGE_COMMAND = RIGHT_CLICK_IMAGE_COMMAND;
-exports.default = ImageComponent;
+export {
+  RIGHT_CLICK_IMAGE_COMMAND,
+  ImageComponent as default
+};

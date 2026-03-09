@@ -10,7 +10,6 @@ import type { JSX } from 'react';
 
 import './index.css';
 
-import { $isCodeHighlightNode } from '@lexical/code';
 import { $isLinkNode, TOGGLE_LINK_COMMAND } from '@lexical/link';
 import { useLexicalComposerContext } from '@lexical/react/LexicalComposerContext';
 import { mergeRegister } from '@lexical/utils';
@@ -40,27 +39,15 @@ function TextFormatFloatingToolbar({
   isBold,
   isItalic,
   isUnderline,
-  isUppercase,
-  isLowercase,
-  isCapitalize,
-  isCode,
   isStrikethrough,
-  isSubscript,
-  isSuperscript,
   setIsLinkEditMode,
 }: {
   editor: LexicalEditor;
   anchorElem: HTMLElement;
   isBold: boolean;
-  isCode: boolean;
   isItalic: boolean;
   isLink: boolean;
-  isUppercase: boolean;
-  isLowercase: boolean;
-  isCapitalize: boolean;
   isStrikethrough: boolean;
-  isSubscript: boolean;
-  isSuperscript: boolean;
   isUnderline: boolean;
   setIsLinkEditMode: Dispatch<boolean>;
 }): JSX.Element {
@@ -253,108 +240,6 @@ function TextFormatFloatingToolbar({
           </button>
           <button
             type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
-            }}
-            className={'popup-item spaced ' + (isSubscript ? 'active' : '')}
-            title={formatMessage({
-              id: 'lexical.plugin.format.subscript.title',
-              defaultMessage: 'Subscript',
-            })}
-            aria-label={formatMessage({
-              id: 'lexical.plugin.format.subscript.aria',
-              defaultMessage: 'Format Subscript',
-            })}
-          >
-            <i className="format subscript" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript');
-            }}
-            className={'popup-item spaced ' + (isSuperscript ? 'active' : '')}
-            title={formatMessage({
-              id: 'lexical.plugin.format.superscript.title',
-              defaultMessage: 'Superscript',
-            })}
-            aria-label={formatMessage({
-              id: 'lexical.plugin.format.superscript.aria',
-              defaultMessage: 'Format Superscript',
-            })}
-          >
-            <i className="format superscript" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'uppercase');
-            }}
-            className={'popup-item spaced ' + (isUppercase ? 'active' : '')}
-            title={formatMessage({
-              id: 'lexical.plugin.format.uppercase.title',
-              defaultMessage: 'Uppercase',
-            })}
-            aria-label={formatMessage({
-              id: 'lexical.plugin.format.uppercase.aria',
-              defaultMessage: 'Format text to uppercase',
-            })}
-          >
-            <i className="format uppercase" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'lowercase');
-            }}
-            className={'popup-item spaced ' + (isLowercase ? 'active' : '')}
-            title={formatMessage({
-              id: 'lexical.plugin.format.lowercase.title',
-              defaultMessage: 'Lowercase',
-            })}
-            aria-label={formatMessage({
-              id: 'lexical.plugin.format.lowercase.aria',
-              defaultMessage: 'Format text to lowercase',
-            })}
-          >
-            <i className="format lowercase" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'capitalize');
-            }}
-            className={'popup-item spaced ' + (isCapitalize ? 'active' : '')}
-            title={formatMessage({
-              id: 'lexical.plugin.format.capitalize.title',
-              defaultMessage: 'Capitalize',
-            })}
-            aria-label={formatMessage({
-              id: 'lexical.plugin.format.capitalize.aria',
-              defaultMessage: 'Format text to capitalize',
-            })}
-          >
-            <i className="format capitalize" />
-          </button>
-          <button
-            type="button"
-            onClick={() => {
-              editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
-            }}
-            className={'popup-item spaced ' + (isCode ? 'active' : '')}
-            title={formatMessage({
-              id: 'lexical.plugin.format.code.title',
-              defaultMessage: 'Insert code block',
-            })}
-            aria-label={formatMessage({
-              id: 'lexical.plugin.format.code.aria',
-              defaultMessage: 'Insert code block',
-            })}
-          >
-            <i className="format code" />
-          </button>
-          <button
-            type="button"
             onClick={insertLink}
             className={'popup-item spaced ' + (isLink ? 'active' : '')}
             title={formatMessage({
@@ -384,13 +269,7 @@ function useFloatingTextFormatToolbar(
   const [isBold, setIsBold] = useState(false);
   const [isItalic, setIsItalic] = useState(false);
   const [isUnderline, setIsUnderline] = useState(false);
-  const [isUppercase, setIsUppercase] = useState(false);
-  const [isLowercase, setIsLowercase] = useState(false);
-  const [isCapitalize, setIsCapitalize] = useState(false);
   const [isStrikethrough, setIsStrikethrough] = useState(false);
-  const [isSubscript, setIsSubscript] = useState(false);
-  const [isSuperscript, setIsSuperscript] = useState(false);
-  const [isCode, setIsCode] = useState(false);
 
   const updatePopup = useCallback(() => {
     editor.getEditorState().read(() => {
@@ -422,13 +301,7 @@ function useFloatingTextFormatToolbar(
       setIsBold(selection.hasFormat('bold'));
       setIsItalic(selection.hasFormat('italic'));
       setIsUnderline(selection.hasFormat('underline'));
-      setIsUppercase(selection.hasFormat('uppercase'));
-      setIsLowercase(selection.hasFormat('lowercase'));
-      setIsCapitalize(selection.hasFormat('capitalize'));
       setIsStrikethrough(selection.hasFormat('strikethrough'));
-      setIsSubscript(selection.hasFormat('subscript'));
-      setIsSuperscript(selection.hasFormat('superscript'));
-      setIsCode(selection.hasFormat('code'));
 
       // Update links
       const parent = node.getParent();
@@ -438,7 +311,7 @@ function useFloatingTextFormatToolbar(
         setIsLink(false);
       }
 
-      if (!$isCodeHighlightNode(selection.anchor.getNode()) && selection.getTextContent() !== '') {
+      if (selection.getTextContent() !== '') {
         setIsText($isTextNode(node) || $isParagraphNode(node));
       } else {
         setIsText(false);
@@ -483,14 +356,8 @@ function useFloatingTextFormatToolbar(
       isLink={isLink}
       isBold={isBold}
       isItalic={isItalic}
-      isUppercase={isUppercase}
-      isLowercase={isLowercase}
-      isCapitalize={isCapitalize}
       isStrikethrough={isStrikethrough}
-      isSubscript={isSubscript}
-      isSuperscript={isSuperscript}
       isUnderline={isUnderline}
-      isCode={isCode}
       setIsLinkEditMode={setIsLinkEditMode}
     />,
     anchorElem

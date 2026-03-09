@@ -3,9 +3,10 @@ import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext
 import { useLexicalEditable } from "@lexical/react/useLexicalEditable";
 import { mergeRegister } from "@lexical/utils";
 import { isHTMLElement, $getNodeByKey, SELECTION_CHANGE_COMMAND, COMMAND_PRIORITY_HIGH, KEY_ESCAPE_COMMAND, $getSelection, $isNodeSelection } from "lexical";
-import { forwardRef, useState, useRef, useCallback, useEffect } from "react";
+import { forwardRef, useRef, useEffect, useState, useCallback } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { $ as $isEquationNode, K as KatexRenderer } from "./Input-ChDt0ozq.mjs";
+import katex from "katex";
+import { $ as $isEquationNode } from "./Input-wFPTNyMk.mjs";
 function EquationEditor({ equation, setEquation, inline }, forwardedRef) {
   const onChange = (event) => {
     setEquation(event.target.value);
@@ -38,6 +39,37 @@ function EquationEditor({ equation, setEquation, inline }, forwardedRef) {
   ] });
 }
 const EquationEditor$1 = forwardRef(EquationEditor);
+function KatexRenderer({
+  equation,
+  inline,
+  onDoubleClick
+}) {
+  const katexElementRef = useRef(null);
+  useEffect(() => {
+    const katexElement = katexElementRef.current;
+    if (katexElement !== null) {
+      katex.render(equation, katexElement, {
+        displayMode: !inline,
+        // true === block display //
+        errorColor: "#cc0000",
+        output: "html",
+        strict: "warn",
+        throwOnError: false,
+        trust: false
+      });
+    }
+  }, [equation, inline]);
+  return (
+    // We use an empty image tag either side to ensure Android doesn't try and compose from the
+    // inner text from Katex. There didn't seem to be any other way of making this work,
+    // without having a physical space.
+    /* @__PURE__ */ jsxs(Fragment, { children: [
+      /* @__PURE__ */ jsx("img", { src: "#", alt: "" }),
+      /* @__PURE__ */ jsx("span", { role: "button", tabIndex: -1, onDoubleClick, ref: katexElementRef }),
+      /* @__PURE__ */ jsx("img", { src: "#", alt: "" })
+    ] })
+  );
+}
 function EquationComponent({
   equation,
   inline,

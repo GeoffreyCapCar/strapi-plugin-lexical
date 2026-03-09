@@ -14,9 +14,6 @@ export declare const DEFAULT_FONT_SIZE = 15;
 export declare const blockTypeToBlockName: {
     bullet: string;
     check: string;
-    code: string;
-    h1: string;
-    h2: string;
     h3: string;
     h4: string;
     h5: string;
@@ -27,24 +24,20 @@ export declare const blockTypeToBlockName: {
 };
 declare const INITIAL_TOOLBAR_STATE: {
     bgColor: string;
-    blockType: "number" | "h2" | "code" | "h1" | "h3" | "h4" | "h5" | "h6" | "paragraph" | "bullet" | "check" | "quote";
+    blockType: "number" | "h3" | "h4" | "h5" | "h6" | "paragraph" | "bullet" | "check" | "quote";
     canRedo: boolean;
     canUndo: boolean;
-    codeLanguage: string;
     elementFormat: ElementFormatType;
     fontColor: string;
     fontFamily: string;
     fontSize: string;
     fontSizeInputValue: string;
     isBold: boolean;
-    isCode: boolean;
     isImageCaption: boolean;
     isItalic: boolean;
     isLink: boolean;
     isRTL: boolean;
     isStrikethrough: boolean;
-    isSubscript: boolean;
-    isSuperscript: boolean;
     isUnderline: boolean;
     isLowercase: boolean;
     isUppercase: boolean;

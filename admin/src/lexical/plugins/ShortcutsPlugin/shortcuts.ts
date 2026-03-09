@@ -23,7 +23,6 @@ export const SHORTCUTS = Object.freeze({
   // (Ctrl|⌘) + Shift + <key> shortcuts
   INCREASE_FONT_SIZE: IS_APPLE ? '⌘+Shift+.' : 'Ctrl+Shift+.',
   DECREASE_FONT_SIZE: IS_APPLE ? '⌘+Shift+,' : 'Ctrl+Shift+,',
-  INSERT_CODE_BLOCK: IS_APPLE ? '⌘+Shift+C' : 'Ctrl+Shift+C',
   STRIKETHROUGH: IS_APPLE ? '⌘+Shift+S' : 'Ctrl+Shift+S',
   LOWERCASE: IS_APPLE ? '⌘+Shift+1' : 'Ctrl+Shift+1',
   UPPERCASE: IS_APPLE ? '⌘+Shift+2' : 'Ctrl+Shift+2',
@@ -34,8 +33,6 @@ export const SHORTCUTS = Object.freeze({
   RIGHT_ALIGN: IS_APPLE ? '⌘+Shift+R' : 'Ctrl+Shift+R',
 
   // (Ctrl|⌘) + <key> shortcuts
-  SUBSCRIPT: IS_APPLE ? '⌘+,' : 'Ctrl+,',
-  SUPERSCRIPT: IS_APPLE ? '⌘+.' : 'Ctrl+.',
   INDENT: IS_APPLE ? '⌘+]' : 'Ctrl+]',
   OUTDENT: IS_APPLE ? '⌘+[' : 'Ctrl+[',
   CLEAR_FORMATTING: IS_APPLE ? '⌘+\\' : 'Ctrl+\\',
@@ -101,21 +98,6 @@ export function isFormatNumberedList(event: KeyboardEvent): boolean {
     altKey &&
     controlOrMeta(metaKey, ctrlKey)
   );
-}
-
-export function isFormatCheckList(event: KeyboardEvent): boolean {
-  const { code, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return (
-    (code === 'Numpad6' || code === 'Digit6') &&
-    !shiftKey &&
-    altKey &&
-    controlOrMeta(metaKey, ctrlKey)
-  );
-}
-
-export function isFormatCode(event: KeyboardEvent): boolean {
-  const { code, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code === 'KeyC' && !shiftKey && altKey && controlOrMeta(metaKey, ctrlKey);
 }
 
 export function isFormatQuote(event: KeyboardEvent): boolean {
@@ -186,21 +168,6 @@ export function isRightAlign(event: KeyboardEvent): boolean {
 export function isJustifyAlign(event: KeyboardEvent): boolean {
   const { code, shiftKey, altKey, metaKey, ctrlKey } = event;
   return code === 'KeyJ' && shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
-}
-
-export function isSubscript(event: KeyboardEvent): boolean {
-  const { code, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code === 'Comma' && !shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
-}
-
-export function isSuperscript(event: KeyboardEvent): boolean {
-  const { code, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code === 'Period' && !shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
-}
-
-export function isInsertCodeBlock(event: KeyboardEvent): boolean {
-  const { code, shiftKey, altKey, metaKey, ctrlKey } = event;
-  return code === 'KeyC' && shiftKey && !altKey && controlOrMeta(metaKey, ctrlKey);
 }
 
 export function isIncreaseFontSize(event: KeyboardEvent): boolean {

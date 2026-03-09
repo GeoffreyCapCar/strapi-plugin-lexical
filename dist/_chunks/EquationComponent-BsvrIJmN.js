@@ -7,7 +7,10 @@ const utils = require("@lexical/utils");
 const lexical = require("lexical");
 const React = require("react");
 const reactErrorBoundary = require("react-error-boundary");
-const Input = require("./Input-BmUUodWb.js");
+const katex = require("katex");
+const Input = require("./Input-Nn-YBgU7.js");
+const _interopDefault = (e) => e && e.__esModule ? e : { default: e };
+const katex__default = /* @__PURE__ */ _interopDefault(katex);
 function EquationEditor({ equation, setEquation, inline }, forwardedRef) {
   const onChange = (event) => {
     setEquation(event.target.value);
@@ -40,6 +43,37 @@ function EquationEditor({ equation, setEquation, inline }, forwardedRef) {
   ] });
 }
 const EquationEditor$1 = React.forwardRef(EquationEditor);
+function KatexRenderer({
+  equation,
+  inline,
+  onDoubleClick
+}) {
+  const katexElementRef = React.useRef(null);
+  React.useEffect(() => {
+    const katexElement = katexElementRef.current;
+    if (katexElement !== null) {
+      katex__default.default.render(equation, katexElement, {
+        displayMode: !inline,
+        // true === block display //
+        errorColor: "#cc0000",
+        output: "html",
+        strict: "warn",
+        throwOnError: false,
+        trust: false
+      });
+    }
+  }, [equation, inline]);
+  return (
+    // We use an empty image tag either side to ensure Android doesn't try and compose from the
+    // inner text from Katex. There didn't seem to be any other way of making this work,
+    // without having a physical space.
+    /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsx("img", { src: "#", alt: "" }),
+      /* @__PURE__ */ jsxRuntime.jsx("span", { role: "button", tabIndex: -1, onDoubleClick, ref: katexElementRef }),
+      /* @__PURE__ */ jsxRuntime.jsx("img", { src: "#", alt: "" })
+    ] })
+  );
+}
 function EquationComponent({
   equation,
   inline,
@@ -123,7 +157,7 @@ function EquationComponent({
       ref: inputRef
     }
   ) : /* @__PURE__ */ jsxRuntime.jsx(reactErrorBoundary.ErrorBoundary, { onError: (e) => editor._onError(e), fallback: null, children: /* @__PURE__ */ jsxRuntime.jsx(
-    Input.KatexRenderer,
+    KatexRenderer,
     {
       equation: equationValue,
       inline,

@@ -1,20 +1,50 @@
-import { jsxs, jsx, Fragment } from "react/jsx-runtime";
-import { f as useModal, g as $isInlineImageNode, L as LinkPlugin, e as LexicalContentEditable, T as TextInput, D as DialogActions, B as Button } from "./Input-ChDt0ozq.mjs";
-import { AutoFocusPlugin } from "@lexical/react/LexicalAutoFocusPlugin";
-import { useLexicalComposerContext } from "@lexical/react/LexicalComposerContext";
-import { LexicalErrorBoundary } from "@lexical/react/LexicalErrorBoundary";
-import { LexicalNestedComposer } from "@lexical/react/LexicalNestedComposer";
-import { RichTextPlugin } from "@lexical/react/LexicalRichTextPlugin";
-import { useLexicalEditable } from "@lexical/react/useLexicalEditable";
-import { useLexicalNodeSelection } from "@lexical/react/useLexicalNodeSelection";
-import { mergeRegister } from "@lexical/utils";
-import { $getSelection, $isNodeSelection, $setSelection, SELECTION_CHANGE_COMMAND, COMMAND_PRIORITY_LOW, CLICK_COMMAND, DRAGSTART_COMMAND, KEY_DELETE_COMMAND, KEY_BACKSPACE_COMMAND, KEY_ENTER_COMMAND, KEY_ESCAPE_COMMAND, $getNodeByKey } from "lexical";
-import { useRef, useState, useCallback, useEffect, Suspense } from "react";
-import { useIntl } from "react-intl";
+"use strict";
+Object.defineProperty(exports, Symbol.toStringTag, { value: "Module" });
+const jsxRuntime = require("react/jsx-runtime");
+const LexicalAutoFocusPlugin = require("@lexical/react/LexicalAutoFocusPlugin");
+const LexicalComposerContext = require("@lexical/react/LexicalComposerContext");
+const LexicalErrorBoundary = require("@lexical/react/LexicalErrorBoundary");
+const LexicalNestedComposer = require("@lexical/react/LexicalNestedComposer");
+const LexicalRichTextPlugin = require("@lexical/react/LexicalRichTextPlugin");
+const useLexicalEditable = require("@lexical/react/useLexicalEditable");
+const useLexicalNodeSelection = require("@lexical/react/useLexicalNodeSelection");
+const utils = require("@lexical/utils");
+const lexical = require("lexical");
+const React = require("react");
+const reactIntl = require("react-intl");
+const Input = require("./Input-Nn-YBgU7.js");
+function DialogActions({ "data-test-id": dataTestId, children }) {
+  return /* @__PURE__ */ jsxRuntime.jsx("div", { className: "DialogActions", "data-test-id": dataTestId, children });
+}
+function TextInput({
+  label,
+  value,
+  onChange,
+  placeholder = "",
+  "data-test-id": dataTestId,
+  type = "text"
+}) {
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "Input__wrapper", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("label", { className: "Input__label", children: label }),
+    /* @__PURE__ */ jsxRuntime.jsx(
+      "input",
+      {
+        type,
+        className: "Input__input",
+        placeholder,
+        value,
+        onChange: (e) => {
+          onChange(e.target.value);
+        },
+        "data-test-id": dataTestId
+      }
+    )
+  ] });
+}
 function Select({ children, label, className, ...other }) {
-  return /* @__PURE__ */ jsxs("div", { className: "Input__wrapper", children: [
-    /* @__PURE__ */ jsx("label", { style: { marginTop: "-1em" }, className: "Input__label", children: label }),
-    /* @__PURE__ */ jsx("select", { ...other, className: className || "select", children })
+  return /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "Input__wrapper", children: [
+    /* @__PURE__ */ jsxRuntime.jsx("label", { style: { marginTop: "-1em" }, className: "Input__label", children: label }),
+    /* @__PURE__ */ jsxRuntime.jsx("select", { ...other, className: className || "select", children })
   ] });
 }
 const imageCache = /* @__PURE__ */ new Set();
@@ -40,7 +70,7 @@ function LazyImage({
   position
 }) {
   useSuspenseImage(src);
-  return /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsxRuntime.jsx(
     "img",
     {
       className: className || void 0,
@@ -62,12 +92,12 @@ function UpdateInlineImageDialog({
   nodeKey,
   onClose
 }) {
-  const { formatMessage } = useIntl();
+  const { formatMessage } = reactIntl.useIntl();
   const editorState = activeEditor.getEditorState();
-  const node = editorState.read(() => $getNodeByKey(nodeKey));
-  const [altText, setAltText] = useState(node.getAltText());
-  const [showCaption, setShowCaption] = useState(node.getShowCaption());
-  const [position, setPosition] = useState(node.getPosition());
+  const node = editorState.read(() => lexical.$getNodeByKey(nodeKey));
+  const [altText, setAltText] = React.useState(node.getAltText());
+  const [showCaption, setShowCaption] = React.useState(node.getShowCaption());
+  const [position, setPosition] = React.useState(node.getPosition());
   const handleShowCaptionChange = (e) => {
     setShowCaption(e.target.checked);
   };
@@ -83,8 +113,8 @@ function UpdateInlineImageDialog({
     }
     onClose();
   };
-  return /* @__PURE__ */ jsxs(Fragment, { children: [
-    /* @__PURE__ */ jsx("div", { style: { marginBottom: "1em" }, children: /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+    /* @__PURE__ */ jsxRuntime.jsx("div", { style: { marginBottom: "1em" }, children: /* @__PURE__ */ jsxRuntime.jsx(
       TextInput,
       {
         label: formatMessage({
@@ -100,7 +130,7 @@ function UpdateInlineImageDialog({
         "data-test-id": "image-modal-alt-text-input"
       }
     ) }),
-    /* @__PURE__ */ jsxs(
+    /* @__PURE__ */ jsxRuntime.jsxs(
       Select,
       {
         style: { marginBottom: "1em", width: "208px" },
@@ -113,23 +143,23 @@ function UpdateInlineImageDialog({
         id: "position-select",
         onChange: handlePositionChange,
         children: [
-          /* @__PURE__ */ jsx("option", { value: "left", children: formatMessage({
+          /* @__PURE__ */ jsxRuntime.jsx("option", { value: "left", children: formatMessage({
             id: "lexical.nodes.inline-image-dialog.position.left",
             defaultMessage: "Left"
           }) }),
-          /* @__PURE__ */ jsx("option", { value: "right", children: formatMessage({
+          /* @__PURE__ */ jsxRuntime.jsx("option", { value: "right", children: formatMessage({
             id: "lexical.nodes.inline-image-dialog.position.right",
             defaultMessage: "Right"
           }) }),
-          /* @__PURE__ */ jsx("option", { value: "full", children: formatMessage({
+          /* @__PURE__ */ jsxRuntime.jsx("option", { value: "full", children: formatMessage({
             id: "lexical.nodes.inline-image-dialog.position.full",
             defaultMessage: "Full Width"
           }) })
         ]
       }
     ),
-    /* @__PURE__ */ jsxs("div", { className: "Input__wrapper", children: [
-      /* @__PURE__ */ jsx(
+    /* @__PURE__ */ jsxRuntime.jsxs("div", { className: "Input__wrapper", children: [
+      /* @__PURE__ */ jsxRuntime.jsx(
         "input",
         {
           id: "caption",
@@ -138,12 +168,12 @@ function UpdateInlineImageDialog({
           onChange: handleShowCaptionChange
         }
       ),
-      /* @__PURE__ */ jsx("label", { htmlFor: "caption", children: formatMessage({
+      /* @__PURE__ */ jsxRuntime.jsx("label", { htmlFor: "caption", children: formatMessage({
         id: "lexical.nodes.inline-image-dialog.caption.label",
         defaultMessage: "Show Caption"
       }) })
     ] }),
-    /* @__PURE__ */ jsx(DialogActions, { children: /* @__PURE__ */ jsx(Button, { "data-test-id": "image-modal-file-upload-btn", onClick: () => handleOnConfirm(), children: formatMessage({
+    /* @__PURE__ */ jsxRuntime.jsx(DialogActions, { children: /* @__PURE__ */ jsxRuntime.jsx(Input.Button, { "data-test-id": "image-modal-file-upload-btn", onClick: () => handleOnConfirm(), children: formatMessage({
       id: "lexical.nodes.inline-image-dialog.confirm",
       defaultMessage: "Confirm"
     }) }) })
@@ -159,24 +189,24 @@ function InlineImageComponent({
   caption,
   position
 }) {
-  const { formatMessage } = useIntl();
-  const [modal, showModal] = useModal();
-  const imageRef = useRef(null);
-  const buttonRef = useRef(null);
-  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection(nodeKey);
-  const [editor] = useLexicalComposerContext();
-  const [selection, setSelection] = useState(null);
-  const activeEditorRef = useRef(null);
-  const isEditable = useLexicalEditable();
-  const $onDelete = useCallback(
+  const { formatMessage } = reactIntl.useIntl();
+  const [modal, showModal] = Input.useModal();
+  const imageRef = React.useRef(null);
+  const buttonRef = React.useRef(null);
+  const [isSelected, setSelected, clearSelection] = useLexicalNodeSelection.useLexicalNodeSelection(nodeKey);
+  const [editor] = LexicalComposerContext.useLexicalComposerContext();
+  const [selection, setSelection] = React.useState(null);
+  const activeEditorRef = React.useRef(null);
+  const isEditable = useLexicalEditable.useLexicalEditable();
+  const $onDelete = React.useCallback(
     (payload) => {
-      const deleteSelection = $getSelection();
-      if (isSelected && $isNodeSelection(deleteSelection)) {
+      const deleteSelection = lexical.$getSelection();
+      if (isSelected && lexical.$isNodeSelection(deleteSelection)) {
         const event = payload;
         event.preventDefault();
-        if (isSelected && $isNodeSelection(deleteSelection)) {
+        if (isSelected && lexical.$isNodeSelection(deleteSelection)) {
           deleteSelection.getNodes().forEach((node) => {
-            if ($isInlineImageNode(node)) {
+            if (Input.$isInlineImageNode(node)) {
               node.remove();
             }
           });
@@ -186,13 +216,13 @@ function InlineImageComponent({
     },
     [isSelected]
   );
-  const $onEnter = useCallback(
+  const $onEnter = React.useCallback(
     (event) => {
-      const latestSelection = $getSelection();
+      const latestSelection = lexical.$getSelection();
       const buttonElem = buttonRef.current;
-      if (isSelected && $isNodeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
+      if (isSelected && lexical.$isNodeSelection(latestSelection) && latestSelection.getNodes().length === 1) {
         if (showCaption) {
-          $setSelection(null);
+          lexical.$setSelection(null);
           event.preventDefault();
           caption.focus();
           return true;
@@ -206,10 +236,10 @@ function InlineImageComponent({
     },
     [caption, isSelected, showCaption]
   );
-  const $onEscape = useCallback(
+  const $onEscape = React.useCallback(
     (event) => {
       if (activeEditorRef.current === caption || buttonRef.current === event.target) {
-        $setSelection(null);
+        lexical.$setSelection(null);
         editor.update(() => {
           setSelected(true);
           const parentRootElement = editor.getRootElement();
@@ -223,24 +253,24 @@ function InlineImageComponent({
     },
     [caption, editor, setSelected]
   );
-  useEffect(() => {
+  React.useEffect(() => {
     let isMounted = true;
-    const unregister = mergeRegister(
+    const unregister = utils.mergeRegister(
       editor.registerUpdateListener(({ editorState }) => {
         if (isMounted) {
-          setSelection(editorState.read(() => $getSelection()));
+          setSelection(editorState.read(() => lexical.$getSelection()));
         }
       }),
       editor.registerCommand(
-        SELECTION_CHANGE_COMMAND,
+        lexical.SELECTION_CHANGE_COMMAND,
         (_, activeEditor) => {
           activeEditorRef.current = activeEditor;
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        lexical.COMMAND_PRIORITY_LOW
       ),
       editor.registerCommand(
-        CLICK_COMMAND,
+        lexical.CLICK_COMMAND,
         (payload) => {
           const event = payload;
           if (event.target === imageRef.current) {
@@ -254,10 +284,10 @@ function InlineImageComponent({
           }
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        lexical.COMMAND_PRIORITY_LOW
       ),
       editor.registerCommand(
-        DRAGSTART_COMMAND,
+        lexical.DRAGSTART_COMMAND,
         (event) => {
           if (event.target === imageRef.current) {
             event.preventDefault();
@@ -265,24 +295,24 @@ function InlineImageComponent({
           }
           return false;
         },
-        COMMAND_PRIORITY_LOW
+        lexical.COMMAND_PRIORITY_LOW
       ),
-      editor.registerCommand(KEY_DELETE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW),
-      editor.registerCommand(KEY_BACKSPACE_COMMAND, $onDelete, COMMAND_PRIORITY_LOW),
-      editor.registerCommand(KEY_ENTER_COMMAND, $onEnter, COMMAND_PRIORITY_LOW),
-      editor.registerCommand(KEY_ESCAPE_COMMAND, $onEscape, COMMAND_PRIORITY_LOW)
+      editor.registerCommand(lexical.KEY_DELETE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW),
+      editor.registerCommand(lexical.KEY_BACKSPACE_COMMAND, $onDelete, lexical.COMMAND_PRIORITY_LOW),
+      editor.registerCommand(lexical.KEY_ENTER_COMMAND, $onEnter, lexical.COMMAND_PRIORITY_LOW),
+      editor.registerCommand(lexical.KEY_ESCAPE_COMMAND, $onEscape, lexical.COMMAND_PRIORITY_LOW)
     );
     return () => {
       isMounted = false;
       unregister();
     };
   }, [clearSelection, editor, isSelected, nodeKey, $onDelete, $onEnter, $onEscape, setSelected]);
-  const draggable = isSelected && $isNodeSelection(selection);
+  const draggable = isSelected && lexical.$isNodeSelection(selection);
   const isFocused = isSelected && isEditable;
-  return /* @__PURE__ */ jsxs(Suspense, { fallback: null, children: [
-    /* @__PURE__ */ jsxs(Fragment, { children: [
-      /* @__PURE__ */ jsxs("span", { draggable, children: [
-        isEditable && /* @__PURE__ */ jsx(
+  return /* @__PURE__ */ jsxRuntime.jsxs(React.Suspense, { fallback: null, children: [
+    /* @__PURE__ */ jsxRuntime.jsxs(jsxRuntime.Fragment, { children: [
+      /* @__PURE__ */ jsxRuntime.jsxs("span", { draggable, children: [
+        isEditable && /* @__PURE__ */ jsxRuntime.jsx(
           "button",
           {
             className: "image-edit-button",
@@ -293,7 +323,7 @@ function InlineImageComponent({
                   id: "lexical.nodes.inline-image-component.update-inline-image",
                   defaultMessage: "Update Inline Image"
                 }),
-                (onClose) => /* @__PURE__ */ jsx(
+                (onClose) => /* @__PURE__ */ jsxRuntime.jsx(
                   UpdateInlineImageDialog,
                   {
                     activeEditor: editor,
@@ -309,10 +339,10 @@ function InlineImageComponent({
             })
           }
         ),
-        /* @__PURE__ */ jsx(
+        /* @__PURE__ */ jsxRuntime.jsx(
           LazyImage,
           {
-            className: isFocused ? `focused ${$isNodeSelection(selection) ? "draggable" : ""}` : null,
+            className: isFocused ? `focused ${lexical.$isNodeSelection(selection) ? "draggable" : ""}` : null,
             src,
             altText,
             imageRef,
@@ -322,14 +352,14 @@ function InlineImageComponent({
           }
         )
       ] }),
-      showCaption && /* @__PURE__ */ jsx("span", { className: "image-caption-container", children: /* @__PURE__ */ jsxs(LexicalNestedComposer, { initialEditor: caption, children: [
-        /* @__PURE__ */ jsx(AutoFocusPlugin, {}),
-        /* @__PURE__ */ jsx(LinkPlugin, {}),
-        /* @__PURE__ */ jsx(
-          RichTextPlugin,
+      showCaption && /* @__PURE__ */ jsxRuntime.jsx("span", { className: "image-caption-container", children: /* @__PURE__ */ jsxRuntime.jsxs(LexicalNestedComposer.LexicalNestedComposer, { initialEditor: caption, children: [
+        /* @__PURE__ */ jsxRuntime.jsx(LexicalAutoFocusPlugin.AutoFocusPlugin, {}),
+        /* @__PURE__ */ jsxRuntime.jsx(Input.LinkPlugin, {}),
+        /* @__PURE__ */ jsxRuntime.jsx(
+          LexicalRichTextPlugin.RichTextPlugin,
           {
-            contentEditable: /* @__PURE__ */ jsx(
-              LexicalContentEditable,
+            contentEditable: /* @__PURE__ */ jsxRuntime.jsx(
+              Input.LexicalContentEditable,
               {
                 placeholder: formatMessage({
                   id: "lexical.nodes.inline-image-component.enter-caption",
@@ -339,7 +369,7 @@ function InlineImageComponent({
                 className: "InlineImageNode__contentEditable"
               }
             ),
-            ErrorBoundary: LexicalErrorBoundary
+            ErrorBoundary: LexicalErrorBoundary.LexicalErrorBoundary
           }
         )
       ] }) })
@@ -347,7 +377,5 @@ function InlineImageComponent({
     modal
   ] });
 }
-export {
-  UpdateInlineImageDialog,
-  InlineImageComponent as default
-};
+exports.UpdateInlineImageDialog = UpdateInlineImageDialog;
+exports.default = InlineImageComponent;

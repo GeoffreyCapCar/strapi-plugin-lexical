@@ -24,8 +24,6 @@ import { sanitizeUrl } from '../../utils/url';
 import {
   clearFormatting,
   formatBulletList,
-  formatCheckList,
-  formatCode,
   formatHeading,
   formatNumberedList,
   formatParagraph,
@@ -40,15 +38,12 @@ import {
   isClearFormatting,
   isDecreaseFontSize,
   isFormatBulletList,
-  isFormatCheckList,
-  isFormatCode,
   isFormatHeading,
   isFormatNumberedList,
   isFormatParagraph,
   isFormatQuote,
   isIncreaseFontSize,
   isIndent,
-  isInsertCodeBlock,
   isInsertLink,
   isJustifyAlign,
   isLeftAlign,
@@ -56,8 +51,6 @@ import {
   isOutdent,
   isRightAlign,
   isStrikeThrough,
-  isSubscript,
-  isSuperscript,
   isUppercase,
 } from './shortcuts';
 
@@ -89,12 +82,6 @@ export default function ShortcutsPlugin({
       } else if (isFormatNumberedList(event)) {
         event.preventDefault();
         formatNumberedList(editor, toolbarState.blockType);
-      } else if (isFormatCheckList(event)) {
-        event.preventDefault();
-        formatCheckList(editor, toolbarState.blockType);
-      } else if (isFormatCode(event)) {
-        event.preventDefault();
-        formatCode(editor, toolbarState.blockType);
       } else if (isFormatQuote(event)) {
         event.preventDefault();
         formatQuote(editor, toolbarState.blockType);
@@ -128,15 +115,6 @@ export default function ShortcutsPlugin({
       } else if (isJustifyAlign(event)) {
         event.preventDefault();
         editor.dispatchCommand(FORMAT_ELEMENT_COMMAND, 'justify');
-      } else if (isSubscript(event)) {
-        event.preventDefault();
-        editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'subscript');
-      } else if (isSuperscript(event)) {
-        event.preventDefault();
-        editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'superscript');
-      } else if (isInsertCodeBlock(event)) {
-        event.preventDefault();
-        editor.dispatchCommand(FORMAT_TEXT_COMMAND, 'code');
       } else if (isIncreaseFontSize(event)) {
         event.preventDefault();
         updateFontSize(editor, UpdateFontSizeType.increment, toolbarState.fontSizeInputValue);

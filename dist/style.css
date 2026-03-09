@@ -155,172 +155,6 @@
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
- */
-
-.code-action-menu-container {
-  height: 35.8px;
-  font-size: 10px;
-  color: rgba(0, 0, 0, 0.5);
-  position: absolute;
-  display: flex;
-  align-items: center;
-  flex-direction: row;
-  user-select: none;
-}
-
-.code-action-menu-container .code-highlight-language {
-  margin-right: 4px;
-}
-
-.code-action-menu-container button.menu-item {
-  border: 1px solid transparent;
-  border-radius: 4px;
-  padding: 4px;
-  background: none;
-  cursor: pointer;
-  flex-shrink: 0;
-  display: flex;
-  align-items: center;
-  color: rgba(0, 0, 0, 0.5);
-  text-transform: uppercase;
-}
-
-.code-action-menu-container button.menu-item i.format {
-  height: 16px;
-  width: 16px;
-  opacity: 0.6;
-  display: flex;
-  color: rgba(0, 0, 0, 0.5);
-  background-size: contain;
-}
-
-.code-action-menu-container button.menu-item:hover {
-  border: 1px solid rgba(0, 0, 0, 0.3);
-  opacity: 0.9;
-}
-
-.code-action-menu-container button.menu-item:active {
-  background-color: rgba(223, 232, 250);
-  border: 1px solid rgba(0, 0, 0, 0.45);
-}
-.code-action-menu-container .prettier-wrapper {
-  position: relative;
-}
-
-.code-action-menu-container .prettier-wrapper .code-error-tips {
-  padding: 5px;
-  border-radius: 4px;
-  color: #fff;
-  background: #222;
-  margin-top: 4px;
-  position: absolute;
-  top: 26px;
-  right: 0;
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- *
- */
-
-.Collapsible__container {
-  background: #fcfcfc;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  margin-bottom: 8px;
-}
-
-.Collapsible__title {
-  cursor: pointer;
-  padding: 5px 5px 5px 20px;
-  position: relative;
-  font-weight: bold;
-  list-style: none;
-  outline: none;
-}
-
-.Collapsible__title::marker,
-.Collapsible__title::-webkit-details-marker {
-  display: none;
-}
-
-.Collapsible__title:before {
-  border-style: solid;
-  border-color: transparent;
-  border-width: 4px 6px 4px 6px;
-  border-left-color: #000;
-  display: block;
-  content: '';
-  position: absolute;
-  left: 7px;
-  top: 50%;
-  transform: translateY(-50%);
-}
-
-.Collapsible__container[open] > .Collapsible__title:before {
-  border-color: transparent;
-  border-width: 6px 4px 0 4px;
-  border-top-color: #000;
-}
-
-.Collapsible__content {
-  padding: 0 5px 5px 20px;
-}
-
-.Collapsible__collapsed .Collapsible__content {
-  display: none;
-  user-select: none;
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- *
- */
-
-.KatexEquationAlterer_defaultRow {
-  display: flex;
-  flex-direction: row;
-  margin-top: 10px;
-  margin-bottom: 10px;
-  justify-content: space-between;
-  overflow: hidden;
-}
-
-.KatexEquationAlterer_dialogActions {
-  display: flex;
-  flex-direction: row;
-  overflow: hidden;
-  margin-top: 20px;
-  margin-bottom: 0;
-  justify-content: right;
-}
-
-.KatexEquationAlterer_centerRow {
-  display: flex;
-  flex-direction: 'row';
-  margin-top: 10px;
-  margin-bottom: 10px;
-  justify-content: center;
-  overflow: hidden;
-}
-
-.KatexEquationAlterer_textArea {
-  width: 100%;
-  resize: none;
-  padding: 7px;
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
  *
  */
 
@@ -346,70 +180,6 @@
   font-size: 16px;
   border-radius: 5px;
   min-width: 0;
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-/* @import url('assets/styles/variables.css'); */
-
-[type='page-break'] {
-  position: relative;
-  display: block;
-  width: calc(100% + var(--editor-input-padding, 28px) * 2);
-  overflow: unset;
-  margin-left: calc(var(--editor-input-padding, 28px) * -1);
-  margin-top: var(--editor-input-padding, 28px);
-  margin-bottom: var(--editor-input-padding, 28px);
-
-  border: none;
-  border-top: 1px dashed var(--editor-color-secondary, #eeeeee);
-  border-bottom: 1px dashed var(--editor-color-secondary, #eeeeee);
-  background-color: var(--editor-color-secondary, #eeeeee);
-}
-
-[type='page-break']::before {
-  content: '';
-
-  position: absolute;
-  top: 50%;
-  left: calc(var(--editor-input-padding, 28px) + 12px);
-  transform: translateY(-50%);
-  opacity: 0.5;
-
-  background-size: cover;
-  background-image: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20fill='currentColor'%20class='bi%20bi-scissors'%20viewBox='0%200%2016%2016'%20transform='matrix(-1,%200,%200,%201,%200,%200)rotate(270)'%3e%3cpath%20d='M3.5%203.5c-.614-.884-.074-1.962.858-2.5L8%207.226%2011.642%201c.932.538%201.472%201.616.858%202.5L8.81%208.61l1.556%202.661a2.5%202.5%200%201%201-.794.637L8%209.73l-1.572%202.177a2.5%202.5%200%201%201-.794-.637L7.19%208.61%203.5%203.5zm2.5%2010a1.5%201.5%200%201%200-3%200%201.5%201.5%200%200%200%203%200zm7%200a1.5%201.5%200%201%200-3%200%201.5%201.5%200%200%200%203%200z'/%3e%3c/svg%3e");
-  width: 16px;
-  height: 16px;
-}
-
-[type='page-break']::after {
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  display: block;
-  padding: 2px 6px;
-  border: 1px solid #ccc;
-  background-color: #fff;
-
-  content: 'PAGE BREAK';
-  font-size: 12px;
-  color: #000;
-  font-weight: 600;
-}
-
-.selected[type='page-break'] {
-  border-color: var(--editor-color-primary, #4766cb);
-}
-
-.selected[type='page-break']::before {
-  opacity: 1;
 }
 .draggable-block-menu {
   border-radius: 4px;
@@ -628,242 +398,6 @@
   .floating-text-format-popup button.insert-comment {
     display: none;
   }
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- *
- */
-
-.InlineImageNode__contentEditable {
-  min-height: 20px;
-  border: 0px;
-  resize: none;
-  cursor: text;
-  caret-color: rgb(5, 5, 5);
-  display: block;
-  position: relative;
-  tab-size: 1;
-  outline: 0px;
-  padding: 10px;
-  user-select: text;
-  font-size: 14px;
-  line-height: 1.4em;
-  width: calc(100% - 20px);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.InlineImageNode__placeholder {
-  font-size: 12px;
-  color: #888;
-  overflow: hidden;
-  position: absolute;
-  text-overflow: ellipsis;
-  bottom: 10px;
-  left: 10px;
-  user-select: none;
-  white-space: nowrap;
-  display: inline-block;
-  pointer-events: none;
-}
-
-.InlineImageNode_Checkbox:checked,
-.InlineImageNode_Checkbox:not(:checked) {
-  position: absolute;
-  left: -9999px;
-}
-
-.InlineImageNode_Checkbox:checked + label,
-.InlineImageNode_Checkbox:not(:checked) + label {
-  position: absolute;
-  padding-right: 55px;
-  cursor: pointer;
-  line-height: 20px;
-  display: inline-block;
-  color: #666;
-}
-
-.InlineImageNode_Checkbox:checked + label:before,
-.InlineImageNode_Checkbox:not(:checked) + label:before {
-  content: '';
-  position: absolute;
-  right: 0;
-  top: 0;
-  width: 18px;
-  height: 18px;
-  border: 1px solid #666;
-  background: #fff;
-}
-
-.InlineImageNode_Checkbox:checked + label:after,
-.InlineImageNode_Checkbox:not(:checked) + label:after {
-  content: '';
-  width: 8px;
-  height: 8px;
-  background: #222222;
-  position: absolute;
-  top: 6px;
-  right: 6px;
-  -webkit-transition: all 0.2s ease;
-  transition: all 0.2s ease;
-}
-
-.InlineImageNode_Checkbox:not(:checked) + label:after {
-  opacity: 0;
-  -webkit-transform: scale(0);
-  transform: scale(0);
-}
-
-.InlineImageNode_Checkbox:checked + label:after {
-  opacity: 1;
-  -webkit-transform: scale(1);
-  transform: scale(1);
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-select {
-  appearance: none;
-  -webkit-appearance: none;
-  -moz-appearance: none;
-  background-color: transparent;
-  border: none;
-  padding: 0 1em 0 0;
-  margin: 0;
-  font-family: inherit;
-  font-size: inherit;
-  cursor: inherit;
-  line-height: inherit;
-
-  z-index: 1;
-  outline: none;
-}
-
-:root {
-  --select-border: #393939;
-  --select-focus: #101484;
-  --select-arrow: var(--select-border);
-}
-
-.select {
-  min-width: 160px;
-  max-width: 290px;
-  border: 1px solid var(--select-border);
-  border-radius: 0.25em;
-  padding: 0.25em 0.5em;
-  font-size: 1rem;
-  cursor: pointer;
-  line-height: 1.4;
-  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- */
-
-.color-picker-wrapper {
-  padding: 20px;
-}
-
-.color-picker-basic-color {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin: 0;
-  padding: 0;
-}
-
-.color-picker-basic-color button {
-  border: 1px solid #ccc;
-  border-radius: 4px;
-  height: 16px;
-  width: 16px;
-  cursor: pointer;
-  list-style-type: none;
-}
-
-.color-picker-basic-color button.active {
-  box-shadow: 0px 0px 2px 2px rgba(0, 0, 0, 0.3);
-}
-
-.color-picker-saturation {
-  width: 100%;
-  position: relative;
-  margin-top: 15px;
-  height: 150px;
-  background-image: linear-gradient(transparent, black),
-    linear-gradient(to right, white, transparent);
-  user-select: none;
-}
-.color-picker-saturation_cursor {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  box-shadow: 0 0 15px #00000026;
-  box-sizing: border-box;
-  transform: translate(-10px, -10px);
-}
-.color-picker-hue {
-  width: 100%;
-  position: relative;
-  margin-top: 15px;
-  height: 12px;
-  background-image: linear-gradient(
-    to right,
-    rgb(255, 0, 0),
-    rgb(255, 255, 0),
-    rgb(0, 255, 0),
-    rgb(0, 255, 255),
-    rgb(0, 0, 255),
-    rgb(255, 0, 255),
-    rgb(255, 0, 0)
-  );
-  user-select: none;
-  border-radius: 12px;
-}
-
-.color-picker-hue_cursor {
-  position: absolute;
-  width: 20px;
-  height: 20px;
-  border: 2px solid #ffffff;
-  border-radius: 50%;
-  box-shadow: #0003 0 0 0 0.5px;
-  box-sizing: border-box;
-  transform: translate(-10px, -4px);
-}
-
-.color-picker-color {
-  border: 1px solid #ccc;
-  margin-top: 15px;
-  width: 100%;
-  height: 20px;
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- *
- */
-
-.TableCellResizer__resizer {
-  position: absolute;
 }
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -3319,6 +2853,70 @@ button.item.dropdown-item-active i {
  * This source code is licensed under the MIT license found in the
  * LICENSE file in the root directory of this source tree.
  *
+ */
+
+/* @import url('assets/styles/variables.css'); */
+
+[type='page-break'] {
+  position: relative;
+  display: block;
+  width: calc(100% + var(--editor-input-padding, 28px) * 2);
+  overflow: unset;
+  margin-left: calc(var(--editor-input-padding, 28px) * -1);
+  margin-top: var(--editor-input-padding, 28px);
+  margin-bottom: var(--editor-input-padding, 28px);
+
+  border: none;
+  border-top: 1px dashed var(--editor-color-secondary, #eeeeee);
+  border-bottom: 1px dashed var(--editor-color-secondary, #eeeeee);
+  background-color: var(--editor-color-secondary, #eeeeee);
+}
+
+[type='page-break']::before {
+  content: '';
+
+  position: absolute;
+  top: 50%;
+  left: calc(var(--editor-input-padding, 28px) + 12px);
+  transform: translateY(-50%);
+  opacity: 0.5;
+
+  background-size: cover;
+  background-image: url("data:image/svg+xml,%3csvg%20xmlns='http://www.w3.org/2000/svg'%20width='16'%20height='16'%20fill='currentColor'%20class='bi%20bi-scissors'%20viewBox='0%200%2016%2016'%20transform='matrix(-1,%200,%200,%201,%200,%200)rotate(270)'%3e%3cpath%20d='M3.5%203.5c-.614-.884-.074-1.962.858-2.5L8%207.226%2011.642%201c.932.538%201.472%201.616.858%202.5L8.81%208.61l1.556%202.661a2.5%202.5%200%201%201-.794.637L8%209.73l-1.572%202.177a2.5%202.5%200%201%201-.794-.637L7.19%208.61%203.5%203.5zm2.5%2010a1.5%201.5%200%201%200-3%200%201.5%201.5%200%200%200%203%200zm7%200a1.5%201.5%200%201%200-3%200%201.5%201.5%200%200%200%203%200z'/%3e%3c/svg%3e");
+  width: 16px;
+  height: 16px;
+}
+
+[type='page-break']::after {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  display: block;
+  padding: 2px 6px;
+  border: 1px solid #ccc;
+  background-color: #fff;
+
+  content: 'PAGE BREAK';
+  font-size: 12px;
+  color: #000;
+  font-weight: 600;
+}
+
+.selected[type='page-break'] {
+  border-color: var(--editor-color-primary, #4766cb);
+}
+
+.selected[type='page-break']::before {
+  opacity: 1;
+}
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
  *
  */
 
@@ -3393,6 +2991,185 @@ button.item.dropdown-item-active i {
 
 .image-control-wrapper--resizing {
   touch-action: none;
+}
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *
+ */
+
+.StrapiImageNode__contentEditable {
+  min-height: 20px;
+  border: 0px;
+  resize: none;
+  cursor: text;
+  caret-color: rgb(5, 5, 5);
+  display: block;
+  position: relative;
+  outline: 0px;
+  padding: 10px;
+  user-select: text;
+  font-size: 12px;
+  width: calc(100% - 20px);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.StrapiImageNode__placeholder {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  top: 10px;
+  left: 10px;
+  user-select: none;
+  white-space: nowrap;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.image-control-wrapper--resizing {
+  touch-action: none;
+}
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ *
+ */
+
+.InlineImageNode__contentEditable {
+  min-height: 20px;
+  border: 0px;
+  resize: none;
+  cursor: text;
+  caret-color: rgb(5, 5, 5);
+  display: block;
+  position: relative;
+  tab-size: 1;
+  outline: 0px;
+  padding: 10px;
+  user-select: text;
+  font-size: 14px;
+  line-height: 1.4em;
+  width: calc(100% - 20px);
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.InlineImageNode__placeholder {
+  font-size: 12px;
+  color: #888;
+  overflow: hidden;
+  position: absolute;
+  text-overflow: ellipsis;
+  bottom: 10px;
+  left: 10px;
+  user-select: none;
+  white-space: nowrap;
+  display: inline-block;
+  pointer-events: none;
+}
+
+.InlineImageNode_Checkbox:checked,
+.InlineImageNode_Checkbox:not(:checked) {
+  position: absolute;
+  left: -9999px;
+}
+
+.InlineImageNode_Checkbox:checked + label,
+.InlineImageNode_Checkbox:not(:checked) + label {
+  position: absolute;
+  padding-right: 55px;
+  cursor: pointer;
+  line-height: 20px;
+  display: inline-block;
+  color: #666;
+}
+
+.InlineImageNode_Checkbox:checked + label:before,
+.InlineImageNode_Checkbox:not(:checked) + label:before {
+  content: '';
+  position: absolute;
+  right: 0;
+  top: 0;
+  width: 18px;
+  height: 18px;
+  border: 1px solid #666;
+  background: #fff;
+}
+
+.InlineImageNode_Checkbox:checked + label:after,
+.InlineImageNode_Checkbox:not(:checked) + label:after {
+  content: '';
+  width: 8px;
+  height: 8px;
+  background: #222222;
+  position: absolute;
+  top: 6px;
+  right: 6px;
+  -webkit-transition: all 0.2s ease;
+  transition: all 0.2s ease;
+}
+
+.InlineImageNode_Checkbox:not(:checked) + label:after {
+  opacity: 0;
+  -webkit-transform: scale(0);
+  transform: scale(0);
+}
+
+.InlineImageNode_Checkbox:checked + label:after {
+  opacity: 1;
+  -webkit-transform: scale(1);
+  transform: scale(1);
+}
+/**
+ * Copyright (c) Meta Platforms, Inc. and affiliates.
+ *
+ * This source code is licensed under the MIT license found in the
+ * LICENSE file in the root directory of this source tree.
+ *
+ */
+
+select {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background-color: transparent;
+  border: none;
+  padding: 0 1em 0 0;
+  margin: 0;
+  font-family: inherit;
+  font-size: inherit;
+  cursor: inherit;
+  line-height: inherit;
+
+  z-index: 1;
+  outline: none;
+}
+
+:root {
+  --select-border: #393939;
+  --select-focus: #101484;
+  --select-arrow: var(--select-border);
+}
+
+.select {
+  min-width: 160px;
+  max-width: 290px;
+  border: 1px solid var(--select-border);
+  border-radius: 0.25em;
+  padding: 0.25em 0.5em;
+  font-size: 1rem;
+  cursor: pointer;
+  line-height: 1.4;
+  background: linear-gradient(to bottom, #ffffff 0%, #e5e5e5 100%);
 }
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
@@ -3558,49 +3335,6 @@ button.item.dropdown-item-active i {
 .PollNode__footer {
   display: flex;
   justify-content: center;
-}
-/**
- * Copyright (c) Meta Platforms, Inc. and affiliates.
- *
- * This source code is licensed under the MIT license found in the
- * LICENSE file in the root directory of this source tree.
- *
- *
- */
-
-.StrapiImageNode__contentEditable {
-  min-height: 20px;
-  border: 0px;
-  resize: none;
-  cursor: text;
-  caret-color: rgb(5, 5, 5);
-  display: block;
-  position: relative;
-  outline: 0px;
-  padding: 10px;
-  user-select: text;
-  font-size: 12px;
-  width: calc(100% - 20px);
-  white-space: pre-wrap;
-  word-break: break-word;
-}
-
-.StrapiImageNode__placeholder {
-  font-size: 12px;
-  color: #888;
-  overflow: hidden;
-  position: absolute;
-  text-overflow: ellipsis;
-  top: 10px;
-  left: 10px;
-  user-select: none;
-  white-space: nowrap;
-  display: inline-block;
-  pointer-events: none;
-}
-
-.image-control-wrapper--resizing {
-  touch-action: none;
 }
 /**
  * Copyright (c) Meta Platforms, Inc. and affiliates.
