@@ -64,8 +64,6 @@ import { SHORTCUTS } from '../ShortcutsPlugin/shortcuts';
 import {
   clearFormatting,
   formatBulletList,
-  formatCheckList,
-  formatCode,
   formatHeading,
   formatNumberedList,
   formatParagraph,
@@ -278,21 +276,6 @@ function BlockFormatDropDown({
         <span className="shortcut">{SHORTCUTS.NUMBERED_LIST}</span>
       </DropDownItem>
       <DropDownItem
-        className={'item wide ' + dropDownActiveClass(blockType === 'check')}
-        onClick={() => formatCheckList(editor, blockType)}
-      >
-        <div className="icon-text-container">
-          <i className="icon check-list" />
-          <span className="text">
-            {formatMessage({
-              id: 'lexical.plugin.toolbar.block.check',
-              defaultMessage: 'Check List',
-            })}
-          </span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.CHECK_LIST}</span>
-      </DropDownItem>
-      <DropDownItem
         className={'item wide ' + dropDownActiveClass(blockType === 'quote')}
         onClick={() => formatQuote(editor, blockType)}
       >
@@ -306,21 +289,6 @@ function BlockFormatDropDown({
           </span>
         </div>
         <span className="shortcut">{SHORTCUTS.QUOTE}</span>
-      </DropDownItem>
-      <DropDownItem
-        className={'item wide ' + dropDownActiveClass(blockType === 'code')}
-        onClick={() => formatCode(editor, blockType)}
-      >
-        <div className="icon-text-container">
-          <i className="icon code" />
-          <span className="text">
-            {formatMessage({
-              id: 'lexical.plugin.toolbar.block.code',
-              defaultMessage: 'Code Block',
-            })}
-          </span>
-        </div>
-        <span className="shortcut">{SHORTCUTS.CODE_BLOCK}</span>
       </DropDownItem>
     </DropDown>
   );

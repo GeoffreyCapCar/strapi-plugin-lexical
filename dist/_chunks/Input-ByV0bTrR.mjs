@@ -291,7 +291,7 @@ async function docFromHash(hash) {
   await closed;
   return JSON.parse(output.join(""));
 }
-const EquationComponent = React.lazy(() => import("./EquationComponent-C2iKmZMO.mjs"));
+const EquationComponent = React.lazy(() => import("./EquationComponent-Bq0AJ33p.mjs"));
 function $convertEquationElement(domNode) {
   let equation = domNode.getAttribute("data-lexical-equation");
   const inline = domNode.getAttribute("data-lexical-inline") === "true";
@@ -395,7 +395,7 @@ function $createEquationNode(equation = "", inline = false) {
 function $isEquationNode(node) {
   return node instanceof EquationNode;
 }
-const ImageComponent = React.lazy(() => import("./ImageComponent-BXVAYrh3.mjs"));
+const ImageComponent = React.lazy(() => import("./ImageComponent-CHjoCA5N.mjs"));
 function isGoogleDocCheckboxImg(img2) {
   return img2.parentElement != null && img2.parentElement.tagName === "LI" && img2.previousSibling === null && img2.getAttribute("aria-roledescription") === "checkbox";
 }
@@ -20194,7 +20194,7 @@ function PageBreakPlugin() {
   }, [editor]);
   return null;
 }
-const PollComponent = React.lazy(() => import("./PollComponent-G32yGAxZ.mjs"));
+const PollComponent = React.lazy(() => import("./PollComponent-D1iL_8uI.mjs"));
 function createUID() {
   return Math.random().toString(36).replace(/[^a-z]+/g, "").slice(0, 5);
 }
@@ -22001,7 +22001,7 @@ function FloatingTextFormatToolbarPlugin({
   const [editor] = useLexicalComposerContext();
   return useFloatingTextFormatToolbar(editor, anchorElem, setIsLinkEditMode);
 }
-const InlineImageComponent = React.lazy(() => import("./InlineImageComponent-BECC_q8Y.mjs"));
+const InlineImageComponent = React.lazy(() => import("./InlineImageComponent-Bq39wQbG.mjs"));
 function $convertInlineImageElement(domNode) {
   if (isHTMLElement(domNode) && domNode.nodeName === "IMG") {
     const { alt: altText, src, width, height } = domNode;
@@ -25201,23 +25201,6 @@ function BlockFormatDropDown({
         /* @__PURE__ */ jsxs(
           DropDownItem,
           {
-            className: "item wide " + dropDownActiveClass(blockType === "check"),
-            onClick: () => formatCheckList(editor, blockType),
-            children: [
-              /* @__PURE__ */ jsxs("div", { className: "icon-text-container", children: [
-                /* @__PURE__ */ jsx("i", { className: "icon check-list" }),
-                /* @__PURE__ */ jsx("span", { className: "text", children: formatMessage({
-                  id: "lexical.plugin.toolbar.block.check",
-                  defaultMessage: "Check List"
-                }) })
-              ] }),
-              /* @__PURE__ */ jsx("span", { className: "shortcut", children: SHORTCUTS.CHECK_LIST })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxs(
-          DropDownItem,
-          {
             className: "item wide " + dropDownActiveClass(blockType === "quote"),
             onClick: () => formatQuote(editor, blockType),
             children: [
@@ -25229,23 +25212,6 @@ function BlockFormatDropDown({
                 }) })
               ] }),
               /* @__PURE__ */ jsx("span", { className: "shortcut", children: SHORTCUTS.QUOTE })
-            ]
-          }
-        ),
-        /* @__PURE__ */ jsxs(
-          DropDownItem,
-          {
-            className: "item wide " + dropDownActiveClass(blockType === "code"),
-            onClick: () => formatCode(editor, blockType),
-            children: [
-              /* @__PURE__ */ jsxs("div", { className: "icon-text-container", children: [
-                /* @__PURE__ */ jsx("i", { className: "icon code" }),
-                /* @__PURE__ */ jsx("span", { className: "text", children: formatMessage({
-                  id: "lexical.plugin.toolbar.block.code",
-                  defaultMessage: "Code Block"
-                }) })
-              ] }),
-              /* @__PURE__ */ jsx("span", { className: "shortcut", children: SHORTCUTS.CODE_BLOCK })
             ]
           }
         )
@@ -26034,7 +26000,7 @@ function LexicalContentEditable({
     }
   );
 }
-const StrapiImageComponent = React.lazy(() => import("./StrapiImageComponent-Sgr-_a6E.mjs"));
+const StrapiImageComponent = React.lazy(() => import("./StrapiImageComponent-C1iXGU4a.mjs"));
 class StrapiImageNode extends DecoratorNode {
   __documentId;
   __src;
@@ -26514,7 +26480,7 @@ const theme = {
     uppercase: "PlaygroundEditorTheme__textUppercase"
   }
 };
-const StickyComponent = React.lazy(() => import("./StickyComponent-CO5E8_Pu.mjs"));
+const StickyComponent = React.lazy(() => import("./StickyComponent-DTSucG0q.mjs"));
 class StickyNode extends DecoratorNode {
   __x;
   __y;

@@ -5,7 +5,7 @@ import { mergeRegister } from "@lexical/utils";
 import { isHTMLElement, $getNodeByKey, SELECTION_CHANGE_COMMAND, COMMAND_PRIORITY_HIGH, KEY_ESCAPE_COMMAND, $getSelection, $isNodeSelection } from "lexical";
 import { forwardRef, useState, useRef, useCallback, useEffect } from "react";
 import { ErrorBoundary } from "react-error-boundary";
-import { $ as $isEquationNode, K as KatexRenderer } from "./Input-C8GCKr3A.mjs";
+import { $ as $isEquationNode, K as KatexRenderer } from "./Input-ByV0bTrR.mjs";
 function EquationEditor({ equation, setEquation, inline }, forwardedRef) {
   const onChange = (event) => {
     setEquation(event.target.value);

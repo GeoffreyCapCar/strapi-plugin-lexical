@@ -6,7 +6,7 @@ import { mergeRegister } from "@lexical/utils";
 import { $getSelection, $isNodeSelection, $setSelection, $isRangeSelection, SELECTION_CHANGE_COMMAND, COMMAND_PRIORITY_LOW, CLICK_COMMAND, DRAGSTART_COMMAND, KEY_DELETE_COMMAND, KEY_BACKSPACE_COMMAND, KEY_ENTER_COMMAND, KEY_ESCAPE_COMMAND, createCommand } from "lexical";
 import { useRef, useState, useCallback, useEffect, Suspense } from "react";
 import { b as brokenImage } from "./image-broken-D4ACHRbi.mjs";
-import { a as $isImageNode } from "./Input-C8GCKr3A.mjs";
+import { a as $isImageNode } from "./Input-ByV0bTrR.mjs";
 import { useIntl } from "react-intl";
 const imageCache = /* @__PURE__ */ new Set();
 const RIGHT_CLICK_STRAPI_IMAGE_COMMAND = createCommand(

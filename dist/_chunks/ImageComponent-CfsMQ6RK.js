@@ -17,7 +17,7 @@ const utils = require("@lexical/utils");
 const lexical = require("lexical");
 const React = require("react");
 const reactIntl = require("react-intl");
-const Input = require("./Input-dL_Efx4f.js");
+const Input = require("./Input-DIDxTLmb.js");
 const imageBroken = require("./image-broken-DvpTkJDI.js");
 const LexicalTreeView = require("@lexical/react/LexicalTreeView");
 function TreeViewPlugin() {
