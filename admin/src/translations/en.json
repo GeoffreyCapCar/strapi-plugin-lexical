@@ -159,6 +159,8 @@
   "lexical.plugin.toolbar.block.h1": "Heading 1",
   "lexical.plugin.toolbar.block.h2": "Heading 2",
   "lexical.plugin.toolbar.block.h3": "Heading 3",
+  "lexical.plugin.toolbar.block.h4": "Heading 4",
+  "lexical.plugin.toolbar.block.h5": "Heading 5",
   "lexical.plugin.toolbar.block.bullet": "Bullet List",
   "lexical.plugin.toolbar.block.number": "Numbered List",
   "lexical.plugin.toolbar.block.check": "Check List",

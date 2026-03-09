@@ -159,6 +159,8 @@
   "lexical.plugin.toolbar.block.h1": "Encabezado 1",
   "lexical.plugin.toolbar.block.h2": "Encabezado 2",
   "lexical.plugin.toolbar.block.h3": "Encabezado 3",
+  "lexical.plugin.toolbar.block.h4": "Encabezado 4",
+  "lexical.plugin.toolbar.block.h5": "Encabezado 5",
   "lexical.plugin.toolbar.block.bullet": "Bullet List",
   "lexical.plugin.toolbar.block.number": "Lista Numerada",
   "lexical.plugin.toolbar.block.check": "Lista de Verificación",

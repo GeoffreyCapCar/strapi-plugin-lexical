@@ -159,6 +159,8 @@
   "lexical.plugin.toolbar.block.h1": "Überschrift 1",
   "lexical.plugin.toolbar.block.h2": "Überschrift 2",
   "lexical.plugin.toolbar.block.h3": "Überschrift 3",
+  "lexical.plugin.toolbar.block.h4": "Überschrift 4",
+  "lexical.plugin.toolbar.block.h5": "Überschrift 5",
   "lexical.plugin.toolbar.block.bullet": "Aufzählungsliste",
   "lexical.plugin.toolbar.block.number": "Nummerierte Liste",
   "lexical.plugin.toolbar.block.check": "Checkliste",

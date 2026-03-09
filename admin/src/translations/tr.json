@@ -159,6 +159,8 @@
   "lexical.plugin.toolbar.block.h1": "Başlık 1",
   "lexical.plugin.toolbar.block.h2": "Başlık 2",
   "lexical.plugin.toolbar.block.h3": "Başlık 3",
+  "lexical.plugin.toolbar.block.h4": "Başlık 4",
+  "lexical.plugin.toolbar.block.h5": "Başlık 5",
   "lexical.plugin.toolbar.block.bullet": "Madde İşaretli Liste",
   "lexical.plugin.toolbar.block.number": "Numaralandırılmış Liste",
   "lexical.plugin.toolbar.block.check": "Kontrol Listesi",
