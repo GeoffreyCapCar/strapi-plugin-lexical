@@ -1,5 +1,5 @@
 {
-  "name": "strapi-plugin-lexical",
+  "name": "@GeoffreyCapCar/strapi-plugin-lexical",
   "version": "0.3.0-fork.9",
   "description": "Adds a custom field with the lexical WYSIWYG editor",
   "keywords": [],
