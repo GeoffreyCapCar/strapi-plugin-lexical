@@ -1,6 +1,21 @@
 {
+  "name": "strapi-plugin-lexical",
   "version": "0.3.0-fork.9",
+  "description": "Adds a custom field with the lexical WYSIWYG editor",
   "keywords": [],
+  "homepage": "https://github.com/GeoffreyCapCar/strapi-plugin-lexical#readme",
+  "bugs": {
+    "url": "https://github.com/GeoffreyCapCar/strapi-plugin-lexical/issues"
+  },
+  "license": "MIT",
+  "author": "CapCar <contact@capcar.fr>",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/GeoffreyCapCar/strapi-plugin-lexical.git"
+  },
+  "files": [
+    "dist"
+  ],
   "type": "commonjs",
   "exports": {
     "./package.json": "./package.json",
@@ -20,9 +35,9 @@
     },
     "./style.css": "./dist/style.css"
   },
-  "files": [
-    "dist"
-  ],
+  "publishConfig": {
+    "@GeoffreyCapCar:registry": "https://npm.pkg.github.com"
+  },
   "scripts": {
     "prebuild": "rm -rf ./dist",
     "build": "strapi-plugin build",
@@ -85,25 +100,13 @@
     "react-router-dom": "^6.28.2",
     "styled-components": "^6.1.14"
   },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,json}": "prettier --write"
+  },
   "strapi": {
     "kind": "plugin",
     "name": "lexical",
     "displayName": "Lexical WYSIWYG Editor",
     "description": "Adds a custom field with the lexical WYSIWYG editor"
-  },
-  "name": "strapi-plugin-lexical",
-  "description": "Adds a custom field with the lexical WYSIWYG editor",
-  "license": "MIT",
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/GeoffreyCapCar/strapi-plugin-lexical.git"
-  },
-  "bugs": {
-    "url": "https://github.com/GeoffreyCapCar/strapi-plugin-lexical/issues"
-  },
-  "homepage": "https://github.com/GeoffreyCapCar/strapi-plugin-lexical#readme",
-  "author": "Benedikt Rötsch <benedikt@hashbite.net>",
-  "lint-staged": {
-    "*.{js,jsx,ts,tsx,json}": "prettier --write"
   }
 }
