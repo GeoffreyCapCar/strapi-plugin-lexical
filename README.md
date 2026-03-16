@@ -34,16 +34,6 @@
 
 </details>
 
-## Publish the forked version
-```bash
-npm run build
-git add dist
-git commit -m "Publish forked version"
-git push
-git tag v0.3.0-fork.N
-git push origin v0.3.0-fork.N
-```
-
 ## Installation
 
 1. Install the plugin:
